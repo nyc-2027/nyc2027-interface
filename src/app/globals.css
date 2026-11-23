@@ -749,3 +749,51 @@
   .partner-ribbon .partner-jci, .partner-ribbon .hero-partner-project .partner-jci { width: 66px; height: 32px; }
   .partner-ribbon .partner-lfi { width: 28px; height: 32px; }
 }
+
+/* Branded gradients for calls to action across landing and registration. */
+.button.gold,
+.button.gold:hover {
+  color: #fff;
+  background-color: #b82c58;
+  background-image: linear-gradient(115deg, #d72c49 0%, #a63083 48%, #633ab5 100%);
+  background-size: 180% 100%;
+}
+.button.navy,
+.button.navy:hover {
+  color: #fff;
+  background-color: #086c9b;
+  background-image: linear-gradient(115deg, #087da5 0%, #3158b0 48%, #733cb0 100%);
+  background-size: 180% 100%;
+}
+.button.glass,
+.button.glass:hover {
+  color: #fff;
+  background-image: linear-gradient(115deg, #009ed42b 0%, #8260c42e 65%, #ed36481a 100%);
+  background-size: 180% 100%;
+  border-color: #c5dbef70;
+}
+.button {
+  background-position: 0% 50%;
+  transition: background-position .5s ease, box-shadow .3s ease, transform .3s ease, border-color .3s ease;
+}
+.button:hover,
+.button:focus-visible {
+  background-position: 100% 50%;
+}
+.button.gold:hover,
+.button.gold:focus-visible {
+  box-shadow: 0 8px 24px #a630833b;
+}
+.button.navy:hover,
+.button.navy:focus-visible {
+  box-shadow: 0 8px 24px #3158b03b;
+}
+.button:disabled,
+.button:disabled:hover {
+  background-position: 0% 50%;
+  transform: none;
+  box-shadow: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .button:hover { transform: none; }
+}
