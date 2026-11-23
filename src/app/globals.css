@@ -1,5 +1,171 @@
 @import "tailwindcss";
 
+.brand.identity {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+}
+.brand.identity .brand-emblem {
+  display: block;
+  flex-shrink: 0;
+  width: 62px;
+  height: 62px;
+  max-width: none;
+  object-fit: contain;
+  filter: none;
+  transform: none;
+  box-shadow: none;
+}
+.brand.identity .brand-caption {
+  font-family: 'Be Vietnam Pro', Arial, sans-serif;
+  letter-spacing: 0;
+  line-height: 1.1;
+}
+.brand.identity .brand-caption > strong {
+  display: block;
+  font-size: 23px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  color: #fff;
+  white-space: nowrap;
+}
+.brand.identity .brand-caption > strong > span {
+  font: inherit;
+  color: #ffc233;
+  letter-spacing: inherit;
+}
+.brand.identity .brand-caption small {
+  display: block;
+  font-size: 8px;
+  line-height: 1.65;
+  letter-spacing: 1.7px;
+  color: #c5d5dc;
+  margin-top: 6px;
+}
+.footer-top .brand.identity .brand-emblem { width: 76px; height: 76px; }
+.admin-sidebar .brand.identity { gap: 8px; }
+.admin-sidebar .brand.identity .brand-emblem { width: 48px; height: 48px; }
+.admin-sidebar .brand.identity .brand-caption > strong { font-size: 19px; }
+.admin-sidebar .brand.identity .brand-caption small { font-size: 7px; letter-spacing: 1px; }
+@media (max-width: 760px) {
+  .brand.identity { gap: 8px; }
+  .brand.identity .brand-emblem { width: 49px; height: 49px; }
+  .brand.identity .brand-caption > strong { font-size: 20px; }
+  .brand.identity .brand-caption small { font-size: 7px; letter-spacing: 1.3px; margin-top: 4px; }
+  .registration-page-header { gap: 12px; }
+}
+@media (max-width: 380px) {
+  .registration-page-links { gap: 10px; }
+  .registration-page-links .event-return { max-width: 70px; font-size: 10px; }
+}
+@media (max-height: 540px) {
+  .site-header .brand.identity .brand-emblem { width: 46px; height: 46px; }
+}
+
+.language-switcher { display: flex; align-items: center; gap: 8px; font-size: 12px; letter-spacing: 1px; white-space: nowrap; }
+.language-switcher > a { padding: 7px 2px; color: #b4c4cd; transition: color .2s; }
+.language-switcher > a[aria-current] { color: var(--gold); border-bottom: 1px solid var(--gold); }
+.language-switcher > span { color: #63808d; }
+.registration-page-links { display: flex; gap: 24px; align-items: center; }
+.program-section { background: radial-gradient(ellipse at 80% 0, #163e4e 0, transparent 55%), #0c2636; }
+.program-section .section-heading { align-items: end; }
+.program-introduction { max-width: 370px; font-size: 15px; color: #a8bec9; line-height: 1.9; }
+.program-days { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin: 38px 0; }
+.program-day { display: flex; align-items: center; gap: 22px; text-align: left; background: #ffffff03; padding: 24px; border: 1px solid #71949e40; border-radius: 4px; transition: border-color .35s, background .35s, box-shadow .35s; }
+.program-day.active { border-color: #d8b859; background: linear-gradient(130deg, #ffe4a414, #00ccb306); box-shadow: 0 0 40px #ffc23308; }
+.program-date { font: 46px/1 'Lora', Georgia, serif; color: #d5e3e7; font-variant-numeric: tabular-nums; }
+.program-day.active .program-date { color: var(--gold); }
+.program-date small { font: 16px/1 'Be Vietnam Pro', Arial, sans-serif; color: #8aa7b3; margin-left: 2px; }
+.program-day > span:last-child > small { display: block; font-size: 10px; letter-spacing: 1.6px; color: #8fadb9; }
+.program-day strong { display: block; font-size: 15px; margin-top: 9px; font-weight: 500; }
+.program-panel-heading { display: flex; gap: 12px; align-items: center; padding-bottom: 22px; border-bottom: 1px solid #ffffff1c; font-size: 14px; color: #d4dfe0; }
+.program-panel-heading > svg { color: var(--gold); }
+.program-panel-heading > p { margin-left: auto; font-size: 12px; color: #9cb2bd; }
+.program-timeline { padding-top: 12px; }
+.program-session { display: grid; grid-template-columns: 150px 1fr; gap: 25px; padding: 30px 0; position: relative; }
+.program-session:not(:last-child)::after { content: ''; position: absolute; left: 175px; right: 0; bottom: 0; height: 1px; background: linear-gradient(90deg, #a4bab128, transparent); }
+.program-session > time { display: flex; align-items: center; align-self: start; gap: 12px; font: 24px/1.4 'Lora', Georgia, serif; color: #eed48f; }
+.program-session > time > svg { color: #81a09e; }
+.program-session > div { border-left: 1px solid #cfb56a55; padding-left: 30px; }
+.program-session h3 { font: 27px/1.45 'Lora', Georgia, serif; color: #f5f1e9; }
+.program-session p { font-size: 15px; line-height: 1.9; color: #a3bbc5; margin-top: 13px; max-width: 800px; }
+.program-module { display: inline-block; color: #82d8c6; font-size: 10px; letter-spacing: .7px; border: 1px solid #7cd6c43b; padding: 3px 8px; border-radius: 2px; margin-bottom: 10px; }
+.program-footer { display: flex; justify-content: space-between; align-items: center; gap: 30px; border-top: 1px solid #ffffff1c; padding-top: 28px; margin-top: 15px; }
+.program-footer > p { font-size: 12px; color: #94aeba; }
+.international-package-options { padding: 0; margin: 0; border: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 18px; min-width: 0; }
+.international-package-options > legend { font: 24px/1.5 'Lora', Georgia, serif; margin-bottom: 22px; }
+.international-package { position: relative; display: flex; flex-direction: column; padding: 24px 20px; border: 1px solid #c3d0cf; border-radius: 6px; cursor: pointer; min-width: 0; background: white; }
+.international-package.selected { border-color: #b38b28; box-shadow: inset 0 0 0 1px #b38b28; background: #fffcf1; }
+.international-package input { position: absolute; right: 15px; top: 18px; width: 18px; height: 18px; accent-color: var(--blue); }
+.international-package .eyebrow { font-size: 8px; letter-spacing: 1px; padding-right: 18px; color: #617c85; }
+.international-package h3 { font: 26px/1.3 'Lora', Georgia, serif; margin: 18px 0; color: var(--blue); }
+.international-package > strong { font: 42px/1.2 'Lora', Georgia, serif; color: #99711b; }
+.international-package strong small { font: 11px/1.5 'Be Vietnam Pro', Arial, sans-serif; color: #6d7e82; }
+.international-package > p { font-size: 12px; color: #758a90; margin-top: 7px; }
+.international-package .package-inherits { color: #354f5d; margin-top: 22px; font-style: italic; }
+.international-package ul { list-style: none; padding: 0; margin: 20px 0 24px; }
+.international-package li { display: flex; gap: 10px; font-size: 13px; line-height: 1.8; margin-bottom: 11px; color: #46616f; }
+.international-package li svg { flex-shrink: 0; color: #008a72; margin-top: 5px; }
+.package-indicative { margin-top: auto; padding-top: 15px; border-top: 1px solid #d1d8ce; color: #768788; font-size: 11px; }
+.international-terms { font-size: 12px; line-height: 1.9; color: #627a85; margin-top: 25px; padding: 20px; background: #eaf0eb; border-radius: 4px; }
+.international-terms h3 { font: 20px/1.4 'Lora', Georgia, serif; color: #345460; }
+.international-terms ul { padding-left: 18px; margin: 12px 0; list-style: disc; }
+.international-terms > p { font-size: 11px; }
+.admin-stats strong { white-space: normal; overflow-wrap: anywhere; }
+
+/* Light, depth and slow movement follow the event's navy and gold palette. */
+.experience-photo { transition: box-shadow .5s, border-color .5s; }
+.experience-photo img { transition: transform 1.2s cubic-bezier(.2,.65,.3,1), filter 1.2s; }
+.experience-photo:hover { border-color: #c5aa6170; box-shadow: 0 18px 50px #00000020; }
+.experience-photo:hover img { transform: scale(1.025); filter: saturate(1.05); }
+.activity-item { transition: border-color .4s; }
+.activity-item:hover { border-color: #b59848; }
+.button { position: relative; overflow: hidden; }
+.button.gold::after { content: ''; pointer-events: none; position: absolute; inset: -60% auto -60% -80%; width: 45%; transform: skewX(-25deg); background: linear-gradient(90deg, transparent, #ffffff55, transparent); }
+.button.gold:hover::after { left: 140%; transition: left .85s ease; }
+.experience-section { position: relative; }
+.experience-section::before { content: ''; position: absolute; left: 15%; right: 15%; top: 0; height: 1px; background: linear-gradient(90deg, transparent, #d5b35a70, transparent); }
+@media (prefers-reduced-motion: no-preference) {
+  .hero-content > * { animation: hero-arrival 1s cubic-bezier(.2,.65,.3,1) both; }
+  .hero-content > :nth-child(2) { animation-delay: .1s; }
+  .hero-content > :nth-child(3) { animation-delay: .2s; }
+  .hero-content > :nth-child(n+4) { animation-delay: .3s; }
+  .program-session { animation: program-arrival .6s cubic-bezier(.2,.65,.3,1) both; }
+  .program-session:nth-child(2) { animation-delay: .07s; }
+  .program-session:nth-child(3) { animation-delay: .14s; }
+  .program-session:nth-child(4) { animation-delay: .21s; }
+  @keyframes hero-arrival { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  @keyframes program-arrival { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+}
+@media (max-width: 1100px) and (min-width: 1001px) {
+  .site-header { gap: 14px; }
+  .header-actions { gap: 12px; }
+  .main-nav { gap: 12px; }
+}
+@media (max-width: 760px) {
+  .registration-page-links { gap: 14px; }
+  .program-section h2 { font-size: 32px; }
+  .program-introduction { max-width: none; margin-top: 20px; }
+  .program-days { gap: 7px; margin-block: 28px; }
+  .program-day { display: block; padding: 15px 10px; }
+  .program-date { display: block; font-size: 32px; margin-bottom: 15px; }
+  .program-date small { font-size: 12px; }
+  .program-day > span:last-child > small { font-size: 8px; letter-spacing: .7px; }
+  .program-day strong { font-size: 11px; min-height: 38px; }
+  .program-panel-heading { flex-wrap: wrap; gap: 8px; }
+  .program-panel-heading > p { flex-basis: 100%; margin-left: 0; margin-top: 5px; font-size: 11px; }
+  .program-session { grid-template-columns: 1fr; gap: 14px; padding: 24px 0; }
+  .program-session > time { font-size: 22px; }
+  .program-session > div { padding-left: 20px; }
+  .program-session h3 { font-size: 23px; }
+  .program-session p { font-size: 14px; }
+  .program-session:not(:last-child)::after { left: 20px; }
+  .program-footer { align-items: flex-start; flex-direction: column; gap: 20px; }
+  .international-package-options { grid-template-columns: 1fr; }
+  .language-switcher { gap: 6px; font-size: 11px; }
+  .international-registration .cart-total strong { font-size: 26px; }
+}
+
 .activities-section {
   background: var(--paper);
   color: var(--ink);

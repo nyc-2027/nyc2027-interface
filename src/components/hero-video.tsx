@@ -1,9 +1,10 @@
 'use client';
-
 import { useEffect, useRef, useState } from 'react';
+import { useLocale } from './locale-provider';
 import { Pause, Play } from 'lucide-react';
 
 export default function HeroVideo() {
+  const { t } = useLocale();
   const ref = useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = useState(false);
   const [ready, setReady] = useState(false);
@@ -32,7 +33,7 @@ export default function HeroVideo() {
       onPlaying={() => { setReady(true); setPlaying(true); }}
       onPause={() => setPlaying(false)} onError={() => setFailed(true)} />
     {!failed && <button type="button" className="hero-playback" onClick={togglePlayback}
-      aria-label={playing ? 'Tạm dừng video Tràng An' : 'Phát video Tràng An'}>
+      aria-label={playing ? t("Tạm dừng video Tràng An") : t("Phát video Tràng An")}>
       {playing ? <Pause size={18} /> : <Play size={18} />}
     </button>}
   </>;

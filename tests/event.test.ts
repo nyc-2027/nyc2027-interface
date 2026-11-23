@@ -1,6 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { addons, calculateTotal, comboPrice, currentTier, servicesForMode } from '../src/lib/event';
+import { addons, calculateTotal, comboPrice, currentTier, servicesForMode, orderMoney, confirmedRevenue, type Order } from '../src/lib/event';
+import { internationalPackages, indicativeUsdRate } from '../src/lib/international';
+import { program } from '../src/lib/agenda';
 
 test('combo prices match all four published member and non-member prices', () => {
   assert.equal(comboPrice('priority', 'member'), 1950000);
@@ -26,4 +28,27 @@ test('full-option group includes every service without duplicates; individual pr
   assert.equal(calculateTotal('impactor', 'member', servicesForMode('group', [])), 10200000);
   assert.equal(calculateTotal('priority', 'member', servicesForMode('individual', [])), 1950000);
   assert.deepEqual(servicesForMode('individual', ['tour15']), ['tour15']);
+});
+
+test('international registrations have only the two poster packages with fixed USD prices', () => {
+  assert.deepEqual(internationalPackages.map(item => [item.id, item.price]), [['delegate', 295], ['experience', 350]]);
+  assert.equal(295 * indicativeUsdRate, 7670000);
+  assert.equal(350 * indicativeUsdRate, 9100000);
+});
+
+test('confirmed revenue keeps USD and legacy VND orders in their own currencies', () => {
+  const base: Order = { id: 'demo', name: 'Test', email: 'test@example.com', phone: '12345678', chapter: '', note: '', tier: 'priority', member: 'member', addons: [], total: 1950000, status: 'confirmed', createdAt: '2026-11-23T00:00:00Z' };
+  const usdOrder: Order = { ...base, id: 'international', total: 295, currency: 'USD', internationalPackageId: 'delegate' };
+  assert.equal(orderMoney(usdOrder), '$295 USD');
+  assert.equal(confirmedRevenue([base, usdOrder]), `${orderMoney(base)} · $295 USD`);
+  assert.equal(confirmedRevenue([base, { ...usdOrder, status: 'pending' }]), orderMoney(base));
+});
+
+test('program follows the eight sessions and times supplied in Agenda.md', () => {
+  assert.deepEqual(program.map(day => day.sessions.map(session => session.time)), [
+    ['14:00', '19:00'], ['07:00', '08:30', '13:00', '19:00'], ['07:30', '08:00'],
+  ]);
+  assert.equal(program[1].sessions[0].module, true);
+  assert.equal(program[2].sessions[1].module, true);
+  assert.equal(program.flatMap(day => day.sessions).every(session => session.name.vi && session.name.en && session.description.vi && session.description.en), true);
 });
