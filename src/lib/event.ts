@@ -1,6 +1,10 @@
 export const money = (value: number) => new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND', maximumFractionDigits: 0 }).format(value);
 export type MemberType = 'member' | 'non-member';
 export type Tier = 'priority' | 'impactor';
+export type TravelMode = 'group' | 'individual';
+export function servicesForMode(mode: TravelMode, selected: string[]) {
+  return mode === 'group' ? [...new Set([...groupServices, ...selected])] : selected;
+}
 export type Addon = { id: string; name: string; detail: string; price: number; category: 'transport' | 'stay' | 'experience' };
 export const addons: Addon[] = [
   { id: 'bus', name: 'Xe khứ hồi', detail: 'Hà Nội – Ninh Bình – Hà Nội', price: 500000, category: 'transport' },
@@ -11,6 +15,7 @@ export const addons: Addon[] = [
   { id: 'tour17', name: 'Tour · Sáng 17/01', detail: 'Một hành trình nửa ngày khám phá Ninh Bình', price: 800000, category: 'experience' },
   { id: 'golf', name: 'Impactor Golf Cup', detail: 'Hoạt động thể thao sáng 17/01', price: 3000000, category: 'experience' },
 ];
+export const groupServices = addons.map(addon => addon.id);
 export function comboPrice(tier: Tier, member: MemberType) {
   return (tier === 'priority' ? 1950000 : 2200000) + (member === 'non-member' ? 100000 : 0);
 }
@@ -38,6 +43,7 @@ export const days = [
   ] },
 ];
 export type Order = {
+  travelMode?: TravelMode;
   id: string; name: string; email: string; phone: string; chapter: string; note: string;
   tier: Tier; member: MemberType; addons: string[]; total: number; createdAt: string;
   status: 'pending' | 'reported' | 'confirmed';

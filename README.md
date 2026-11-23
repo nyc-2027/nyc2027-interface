@@ -9,6 +9,7 @@ pnpm install
 pnpm dev
 ```
 
+- Trang đăng ký riêng: `http://localhost:3000/dang-ky`
 - Trang sự kiện: `http://localhost:3000`
 - Quản trị mẫu: `http://localhost:3000/admin`
 - Kiểm tra: `pnpm typecheck`, `pnpm test`, `pnpm build`.
