@@ -11,14 +11,17 @@ const LocaleContext = createContext<Locale>('vi');
 export function LocaleProvider({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const locale: Locale = pathname === '/en' || pathname.startsWith('/en/') ? 'en' : 'vi';
-  const previousLocale = useRef(locale);
+  const previousNavigation = useRef({ pathname, locale });
 
   useLayoutEffect(() => {
-    if (previousLocale.current !== locale) {
+    const isLanding = pathname === '/' || pathname === '/en';
+    const languageChanged = previousNavigation.current.locale !== locale;
+    const enteredLanding = isLanding && previousNavigation.current.pathname !== pathname;
+    if (languageChanged || enteredLanding) {
       window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-      previousLocale.current = locale;
     }
-  }, [locale]);
+    previousNavigation.current = { pathname, locale };
+  }, [locale, pathname]);
 
   useEffect(() => { document.documentElement.lang = locale; }, [locale]);
   return <LocaleContext.Provider value={locale}>{children}</LocaleContext.Provider>;
@@ -32,9 +35,11 @@ export function useLocale() {
   return { locale, t, localPath };
 }
 
-export function LocalizedLink({ href, ...props }: ComponentProps<typeof NextLink>) {
+export function LocalizedLink({ href, scroll, ...props }: ComponentProps<typeof NextLink>) {
   const { localPath } = useLocale();
-  return <NextLink href={typeof href === 'string' ? localPath(href) : href} {...props} />;
+  const destination = typeof href === 'string' ? localPath(href) : href;
+  const isLanding = destination === '/' || destination === '/en';
+  return <NextLink href={destination} scroll={isLanding ? false : scroll} {...props} />;
 }
 
 export function LanguageSwitcher() {
