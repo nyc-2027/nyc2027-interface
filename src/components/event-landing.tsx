@@ -28,7 +28,7 @@ export default function EventLanding() {
 
   return <>
     <header className="site-header">
-      <Brand href="#top" />
+      <Brand href="#top" variant="lfi" />
       <nav className={menu ? 'main-nav is-open' : 'main-nav'} aria-label={t("Điều hướng chính")}>
         { [[t("Về sự kiện"), '#su-kien'], [t("Lịch trình"), '#lich-trinh'], [t("Trải nghiệm"), '#golf'], [t("Lưu trú"), '#luu-tru'], [t("Không gian"), '#khong-gian'], [t("Hỏi đáp"), '#hoi-dap']].map(([label, url]) => <a href={url} key={url} onClick={() => setMenu(false)}>{t(label)}</a>) }
         <Link className="nav-register" href="/dang-ky">{t("Đăng ký tham dự")}</Link>

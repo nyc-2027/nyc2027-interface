@@ -680,12 +680,12 @@
   align-self: center;
   margin-inline: auto;
   padding: 13px 21px;
-  border: 1px solid #bdd6f038;
+  border: 1px solid #bdd6f06b;
   border-radius: 12px;
-  background: linear-gradient(120deg, #96bfe92b, #8b9edb18);
-  -webkit-backdrop-filter: blur(24px) brightness(1.45) saturate(120%);
-  backdrop-filter: blur(24px) brightness(1.45) saturate(120%);
-  box-shadow: 0 10px 36px #03112224, inset 0 1px 0 #d5e9ff24;
+  background: linear-gradient(120deg, #b6d7ed9e, #c0c6e899 55%, #d0c2e78f);
+  -webkit-backdrop-filter: blur(28px) brightness(1.12) saturate(110%);
+  backdrop-filter: blur(28px) brightness(1.12) saturate(110%);
+  box-shadow: 0 12px 36px #03112226, inset 0 1px 0 #d5e9ff38;
 }
 .partner-ribbon .hero-partner {
   align-items: center;
@@ -696,12 +696,12 @@
 .partner-ribbon .hero-partner-project {
   margin-inline: 16px;
   padding-inline: 17px;
-  border-inline: 1px solid #c7dcf12b;
+  border-inline: 1px solid #243b5926;
 }
 .partner-ribbon .partner-role {
-  color: #e3edf7;
+  color: #182d44;
   font-size: 9px;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 1px;
   line-height: 1.4;
   white-space: nowrap;
@@ -796,4 +796,18 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .button:hover { transform: none; }
+}
+
+.brand.identity.brand-lfi .brand-emblem {
+  width: 62px;
+  height: 66px;
+  padding: 5px;
+  border-radius: 6px;
+  background: transparent;
+}
+@media (max-width: 760px) {
+  .brand.identity.brand-lfi .brand-emblem { width: 47px; height: 51px; padding: 4px; }
+}
+@media (max-height: 540px) {
+  .site-header .brand.identity.brand-lfi .brand-emblem { width: 44px; height: 48px; padding: 3px; }
 }

@@ -10,7 +10,7 @@ export default function RegistrationPageContent() {
   return (
     <div className="registration-page">
       <header className="registration-page-header container">
-        <Brand />
+        <Brand variant="lfi" />
         <div className="registration-page-links"><LanguageSwitcher /><Link className="event-return" href="/">{t('Về trang sự kiện')}</Link></div>
       </header>
       <main className="registration-page-main container">
