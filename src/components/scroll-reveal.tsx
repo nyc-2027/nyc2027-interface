@@ -9,7 +9,7 @@ export default function ScrollReveal() {
 
     const elements = document.querySelectorAll<HTMLElement>(
       'main > section:not(.hero) .section-heading, main > section .experience-heading, ' +
-      '.intro-grid > div, .schedule-layout, .activity-item, .experience-photo, ' +
+      '.story-opening, .story-chapter, .program-layout, ' +
       '.pickleball-layout > *, .handbook-grid > *, .faq-layout > *, ' +
       '.destination-content, .closing-section .container',
     );

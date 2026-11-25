@@ -5,6 +5,7 @@ import '@fontsource/be-vietnam-pro/400.css';
 import '@fontsource/be-vietnam-pro/600.css';
 import '@fontsource/be-vietnam-pro/700.css';
 import './globals.css';
+import './immersive.css';
 import { LocaleProvider } from '@/components/locale-provider';
 
 export const metadata: Metadata = {
