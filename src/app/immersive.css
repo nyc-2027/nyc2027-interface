@@ -140,20 +140,20 @@
 .immersive-site .experience-photo figcaption { padding: 22px 0 0; }
 .immersive-site .experience-photo h3 { color: #f9dfac; font-size: 23px; }
 .immersive-site .experience-photo p { color: var(--story-muted); font-size: 14px; }
-.immersive-site #golf .experience-grid { grid-template-columns: 1.2fr 1fr; align-items: start; gap: 35px; }
-.immersive-site #golf .experience-photo:first-child img { aspect-ratio: 5 / 4; }
-.immersive-site #golf .experience-photo:last-child { padding-top: 100px; }
-.immersive-site #golf .experience-photo:last-child img { aspect-ratio: 4 / 3; }
+.immersive-site #golf .experience-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; gap: 30px; }
+.immersive-site #golf .experience-photo img { aspect-ratio: 4 / 3; height: auto; object-position: center; }
 .immersive-site .pickleball-layout { gap: 80px; }
 .immersive-site .pickleball-layout > img { border: 0; }
-.immersive-site .stay-mosaic { grid-template-columns: 1.4fr 1fr; gap: 30px; }
-.immersive-site .stay-mosaic .experience-photo:first-child img { height: 590px; }
-.immersive-site .stay-mosaic .experience-photo:not(:first-child) img { height: 215px; }
+.immersive-site .stay-mosaic { grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: start; gap: 30px; }
+.immersive-site .stay-mosaic .experience-photo:first-child { grid-row: auto; }
+.immersive-site .stay-mosaic .experience-photo img { height: auto; aspect-ratio: 4 / 3; object-position: center; }
+.immersive-site .experience-photo { margin: 0; min-width: 0; }
 .immersive-site .showcase-note { color: var(--story-muted); }
 .immersive-site #khong-gian .experience-grid { gap: 28px; }
 .immersive-site #khong-gian .experience-photo:nth-child(2) { padding-top: 90px; }
 .immersive-site #khong-gian .experience-photo:nth-child(3) { padding-top: 35px; }
 .immersive-site #khong-gian .experience-photo img { aspect-ratio: 3 / 4; }
+.immersive-site #khong-gian .experience-photo:last-child img { object-position: center bottom; }
 .immersive-site .heritage-section .section-heading { align-items: center; }
 .immersive-site .heritage-section .heading-description { color: var(--story-muted); }
 .immersive-site .heritage-section .experience-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px 28px; }

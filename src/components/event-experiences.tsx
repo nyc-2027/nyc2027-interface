@@ -19,7 +19,7 @@ function PhotoCard({ image, title, description }: Photo) {
 }
 
 export default function EventExperiences() {
-  const { t } = useLocale();
+  const { t, locale } = useLocale();
   return <>
     <section className="section experience-section" id="golf">
       <div className="container">
@@ -65,9 +65,9 @@ export default function EventExperiences() {
           <p>{t("Wyndham Grand Vedana Ninh Bình — điểm dừng chân cho những ngày hội ngộ, giữa cảnh quan hồ nước và núi rừng.")}</p>
         </div>
         <div className="experience-grid stay-mosaic">
-          <PhotoCard image="bungalow-CkxKzQBm.webp" title={t("Bungalow mặt hồ")} description={t("Mái tre soi bóng xuống nước, gần gũi với thiên nhiên.")} />
-          <PhotoCard image="hotel-FrC3zrvc.webp" title={t("Phòng khách sạn")} description={t("Các khối phòng bên hồ trong khu nghỉ dưỡng.")} />
-          <PhotoCard image="villa-BKF-K3Ur.webp" title="Villa" description={t("Không gian nghỉ ngơi và kết nối cho nhóm bạn.")} />
+          <PhotoCard image="vedana-bungalow.jpg" title={t("Bungalow mặt hồ")} description={locale === 'en' ? 'An intimate bamboo retreat overlooking the lake.' : 'Không gian mái tre ấm cúng, mở tầm nhìn ra mặt hồ.'} />
+          <PhotoCard image="vedana-deluxe.jpg" title={t("Phòng khách sạn")} description={locale === 'en' ? 'A restful room with a balcony and mountain views.' : 'Phòng nghỉ có ban công, đón ánh sáng và cảnh núi xanh.'} />
+          <PhotoCard image="vedana-villa.jpg" title="Villa" description={t("Không gian nghỉ ngơi và kết nối cho nhóm bạn.")} />
         </div>
         <p className="showcase-note">{t("Gói lưu trú đăng ký theo phòng ghép 2 người, bao gồm ăn sáng. Hình ảnh giới thiệu các không gian của khu nghỉ dưỡng, hạng phòng cụ thể được BTC xác nhận.")}</p>
         <div className="experience-action"><Link href="/dang-ky" className="button navy">{t("Xem lựa chọn tham dự & lưu trú")}</Link></div>
