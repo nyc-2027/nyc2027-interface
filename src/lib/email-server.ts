@@ -12,10 +12,11 @@ export async function dispatchEmails(registrationId?: string) {
     try {
       const content = confirmationEmail(row.payload, row.kind);
       const logo = await readFile(join(process.cwd(), 'public/images/logo_mail.png'));
+      const titleImage = await readFile(join(process.cwd(), 'public/images/Text_NYC.png'));
       const response = await fetch('https://api.resend.com/emails', {
         method: 'POST', signal: AbortSignal.timeout(10000),
         headers: { Authorization: `Bearer ${process.env.RESEND_API_KEY}`, 'Content-Type': 'application/json', 'Idempotency-Key': `nyc2027/${row.id}` },
-        body: JSON.stringify({ from: process.env.EMAIL_FROM, to: [row.payload.order.email], attachments: [{ filename: 'logo_mail.png', content: logo.toString('base64'), content_id: 'nyc-logo' }], ...(process.env.EMAIL_REPLY_TO ? { reply_to: process.env.EMAIL_REPLY_TO } : {}), ...content }),
+        body: JSON.stringify({ from: process.env.EMAIL_FROM, to: [row.payload.order.email], attachments: [{ filename: 'logo_mail.png', content: logo.toString('base64'), content_id: 'nyc-logo' }, { filename: 'Text_NYC.png', content: titleImage.toString('base64'), content_id: 'nyc-title' }], ...(process.env.EMAIL_REPLY_TO ? { reply_to: process.env.EMAIL_REPLY_TO } : {}), ...content }),
       });
       if (!response.ok) throw new Error('Email provider rejected request');
       const data = await response.json();

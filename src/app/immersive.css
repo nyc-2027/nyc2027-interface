@@ -181,6 +181,7 @@
 .immersive-site .assistant-fab { background: #6f142ae8; border-color: #f4cf8655; backdrop-filter: blur(12px); }
 
 /* Registration keeps its separate route, with a quieter editorial frame. */
+.payment-content .payment-receipt-field { margin-top: 24px; margin-bottom: 24px; }
 .cart-addon .addon-price { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
 .cart-addon .addon-calculation { display: block; font-size: 11px; font-weight: 400; line-height: 1.5; color: #667b85; white-space: normal; text-align: right; }
 .live-payment-qr { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); align-items: center; }
