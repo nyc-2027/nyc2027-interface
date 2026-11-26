@@ -1,15 +1,15 @@
 /* Crimson event identity, with gold light and the cyan of JCI. */
 :root {
-  --deep: #4a0615;
-  --panel: #650c23;
+  --deep: #690019;
+  --panel: #820321;
   --gold: #f4cf86;
   --mint: #e8b7ce;
 }
 .immersive-site {
-  --story-base: #4a0615;
+  --story-base: #690019;
   --story-text: #fff2e4;
   --story-muted: #d6b5bb;
-  background: radial-gradient(ellipse 75% 650px at 0 24%, #9b123033, transparent), radial-gradient(ellipse 70% 900px at 100% 68%, #9b123026, transparent), var(--story-base);
+  background: radial-gradient(ellipse 75% 650px at 0 24%, #ce002e40, transparent), radial-gradient(ellipse 70% 900px at 100% 68%, #b9002533, transparent), var(--story-base);
   color: var(--story-text);
   overflow: clip;
 }
@@ -23,17 +23,23 @@
 .immersive-site .main-nav { gap: 23px; }
 .immersive-site .main-nav > a { font-size: 12px; }
 .immersive-site .hero { height: 100svh; height: 100dvh; padding-top: 103px; padding-bottom: 72px; min-height: 0; }
-.immersive-site .hero-shade { background: radial-gradient(ellipse at 50% 36%, #bd123e26, transparent 65%), linear-gradient(180deg, #420315cc 0%, #65031c55 30%, #5e031e80 60%, #4a0615 100%), linear-gradient(90deg, #a00030b3, #4a06154d 48%, #8a0027a3); }
+.immersive-site .hero-shade { background: linear-gradient(180deg, #17091180 0%, #17091126 28%, #17091133 65%, #69001999 88%, #690019 100%), linear-gradient(90deg, #69001933, transparent 35%, transparent 65%, #69001933); }
 .immersive-site .hero-content { align-items: center; justify-content: center; text-align: center; gap: clamp(12px, 1.8svh, 22px); }
-.immersive-site .hero h1.hero-event-title { max-width: 1000px; font-family: 'Lora', Georgia, serif; font-size: clamp(48px, min(7.3vw, 9.8svh), 108px); line-height: 1.05; letter-spacing: -.04em; text-wrap: balance; text-shadow: 0 2px 40px #0002; }
+.immersive-site .hero h1.hero-event-title { max-width: 1000px; font-family: 'Lora', Georgia, serif; font-size: clamp(44px, min(7.3vw, 8svh), 100px); line-height: 1.05; letter-spacing: -.04em; text-wrap: balance; text-shadow: 0 2px 40px #0002; }
 .immersive-site .hero-event-title > span { font-family: 'Be Vietnam Pro', Arial, sans-serif; font-size: .24em; letter-spacing: .14em; margin-bottom: 20px; color: #fff1df; }
-.immersive-site .hero-event-title > strong { font-weight: 400; color: #ffdf99; }
+.immersive-site .hero-event-title .hero-title-artwork { display: block; width: min(100%, 1000px); height: auto; object-fit: contain; margin-inline: auto; }
+.immersive-site .hero-event-title > strong { position: relative; font-family: 'Lora', Georgia, serif; font-style: italic; font-weight: 400; letter-spacing: -.055em; line-height: .98; color: #ffdf99; padding: .04em .15em .12em; }
+.immersive-site .hero-event-title > strong > span { display: block; }
+.immersive-site .hero-event-title > strong::after { content: ''; position: absolute; width: .3em; height: .42em; top: .09em; left: 30%; background: #fff5cd; clip-path: polygon(50% 0, 58% 40%, 100% 50%, 58% 58%, 50% 100%, 42% 58%, 0 50%, 42% 40%); filter: drop-shadow(0 0 5px #ffcb68); pointer-events: none; }
 @supports (background-clip: text) {
-  .immersive-site .hero-event-title > strong { background: linear-gradient(175deg, #fff3cc 12%, #f6c96f 48%, #ffe7b7 68%, #eab35b 100%); background-clip: text; -webkit-background-clip: text; color: transparent; text-shadow: none; filter: drop-shadow(0 3px 18px #27000b66); }
+  .immersive-site .hero-event-title > strong { background: linear-gradient(112deg, transparent 18%, #fff9debb 19%, transparent 21%, transparent 65%, #fff9deaa 66%, transparent 68%), linear-gradient(176deg, #fff6cb 2%, #ffb134 14%, #fff5ca 23%, #da741c 31%, #fff9d8 39%, #ffc65a 47%, #fffbe6 53%, #d87324 62%, #ffe1a3 72%, #fff8de 81%, #edb2d6 94%); background-clip: text; -webkit-background-clip: text; color: transparent; -webkit-text-stroke: .45px #ffe3a299; text-shadow: none; filter: drop-shadow(0 1px 0 #b75a36) drop-shadow(0 4px 14px #28000c66); }
 }
 .immersive-site .hero-theme { justify-content: center; }
 .immersive-site .hero-theme .fine-line { display: none; }
-.immersive-site .hero-theme p { font-size: 23px; }
+.immersive-site .hero-theme p { font-family: 'Be Vietnam Pro', Arial, sans-serif; font-size: clamp(16px, 2.1vw, 28px); font-weight: 700; line-height: 1.3; letter-spacing: -.045em; text-transform: uppercase; }
+.immersive-site .hero-theme .theme-leading { color: #fff; }
+.immersive-site .hero-theme .theme-for { color: #00b5ff; }
+.immersive-site .hero-theme .theme-impact { color: #ff4b36; background: linear-gradient(90deg, #ff343e 10%, #ff4231 45%, #ffb700 90%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 .immersive-site .hero-theme i { font-style: normal; color: inherit; }
 .immersive-site .hero-description { display: none; }
 .immersive-site .hero-buttons, .immersive-site .hero-meta { justify-content: center; }
@@ -119,7 +125,7 @@
 /* Wide transitions give the landscape room between the chapters. */
 .immersive-site .destination-section { min-height: 560px; margin: 70px 0; }
 .immersive-site .destination-section > img { object-position: center; }
-.immersive-site .destination-shade { background: linear-gradient(0deg, #4a0615, #4a06154d 40%, #4a061540 70%, #4a0615); }
+.immersive-site .destination-shade { background: linear-gradient(0deg, #690019, #6900194d 40%, #69001940 70%, #690019); }
 .immersive-site .destination-content { text-align: center; max-width: 900px; padding: 90px 0; }
 .immersive-site .destination-content > p:not(.eyebrow) { margin-inline: auto; max-width: 500px; }
 .immersive-site .destination-caption { display: none; }
@@ -169,14 +175,14 @@
 .immersive-site .closing-section { padding: 110px 0; background: radial-gradient(ellipse at 50% 100%, #b7194766, transparent 70%), var(--story-base); }
 .immersive-site .closing-section::before, .immersive-site .closing-section::after { display: none; }
 .immersive-site .closing-section h2 { max-width: 850px; margin-inline: auto; font-size: clamp(38px, 5vw, 70px); }
-.immersive-site footer { background: #350410; border-top: 1px solid #e6bc8d26; }
+.immersive-site footer { background: #4b0012; border-top: 1px solid #e6bc8d26; }
 .immersive-site .faq-intro, .immersive-site .faq-item > p, .immersive-site .footer-top > p, .immersive-site .footer-bottom { color: var(--story-muted); }
 .immersive-site .footer-top { padding-block: 45px; }
 .immersive-site .assistant-fab { background: #6f142ae8; border-color: #f4cf8655; backdrop-filter: blur(12px); }
 
 /* Registration keeps its separate route, with a quieter editorial frame. */
-.registration-page { position: relative; isolation: isolate; background: #4a0615; }
-.registration-page::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, #4a0615ed, #4a0615f0), url('/images/trang-an.jpg') center top / cover fixed; }
+.registration-page { position: relative; isolation: isolate; background: #690019; }
+.registration-page::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, #690019ed, #690019f0), url('/images/trang-an.jpg') center top / cover fixed; }
 .registration-page-intro h1 { color: #f9dfac; }
 .registration-page-intro > p:last-child { color: #d6b5bb; }
 .registration-page-main { display: grid; grid-template-columns: 310px minmax(0, 1fr); gap: 60px; max-width: 1240px; padding-top: 55px; align-items: start; }
@@ -187,7 +193,7 @@
 .registration-card { border-radius: 3px; }
 
 @media (min-width: 1500px) {
-  .immersive-site .hero h1.hero-event-title { font-size: min(110px, 10svh); }
+  .immersive-site .hero h1.hero-event-title { font-size: min(110px, 8svh); }
 }
 @media (max-width: 1100px) {
   .immersive-site .container { width: calc(100% - 64px); }
@@ -203,7 +209,7 @@
   .registration-page-intro h1 { font-size: 39px; }
 }
 @media (max-width: 1000px) {
-  .immersive-site .main-nav { background: #4a0615f5; top: 92px; }
+  .immersive-site .main-nav { background: #690019f5; top: 92px; }
   .immersive-site .main-nav.is-open { gap: 25px; }
 }
 @media (max-width: 760px) {
@@ -280,6 +286,9 @@
   .immersive-site .hero h1.hero-event-title { font-size: clamp(25px, 6svh, 36px); }
   .immersive-site .hero-event-title > span { display: inline; font-size: .55em; letter-spacing: .03em; margin: 0 10px 0 0; }
   .immersive-site .hero-event-title > strong { display: inline; }
+  .immersive-site .hero-event-title > strong > span { display: inline; }
+  .immersive-site .hero-event-title > strong > span + span::before { content: ' '; }
+  .immersive-site .hero-event-title > strong::after { display: none; }
   .immersive-site .hero-partners.partner-ribbon { padding: 6px 10px; }
   .immersive-site .partner-ribbon .partner-logo-surface { min-height: 28px; }
   .immersive-site .partner-ribbon .partner-yba, .immersive-site .partner-ribbon .partner-jci, .immersive-site .partner-ribbon .partner-lfi { height: 28px; }

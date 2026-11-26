@@ -9,7 +9,7 @@ import './immersive.css';
 import { LocaleProvider } from '@/components/locale-provider';
 
 export const metadata: Metadata = {
-  icons: { icon: '/images/nyc2027-emblem.png', apple: '/images/nyc2027-emblem.png' },
+  icons: { icon: '/images/logo_LFI.png', apple: '/images/logo_LFI.png' },
   title: '2027 JCI Vietnam Newyear Convention · Ninh Bình',
   description: 'New Year Convention 2027 của JCI Vietnam. Khám phá lịch trình và đăng ký combo, lưu trú, di chuyển, tour tại Ninh Bình, 15–17.01.2027.',
 };

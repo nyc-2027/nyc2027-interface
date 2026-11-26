@@ -7,7 +7,7 @@ export default function Brand({ href = '/', variant = 'event' }: { href?: string
 
   return (
     <LocalizedLink href={href} className={`brand identity ${variant === 'lfi' ? 'brand-lfi' : ''}`} aria-label={t('Về trang sự kiện NYC 2027')}>
-      <img className="brand-emblem" src={variant === 'lfi' ? '/images/logo_LFI.png' : '/images/nyc2027-emblem.png'} alt={variant === 'lfi' ? 'Leading for Impact' : ''} width={variant === 'lfi' ? 2519 : 1280} height={variant === 'lfi' ? 2700 : 1280} />
+      <img className="brand-emblem" src="/images/logo_LFI.png" alt="Leading for Impact" width={2519} height={2700} />
       <span className="brand-caption">
         <strong>NYC <span>2027</span></strong>
         <small>NEW YEAR<br />CONVENTION</small>

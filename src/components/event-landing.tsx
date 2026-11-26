@@ -45,8 +45,8 @@ export default function EventLanding() {
 
         <div className="container hero-content">
           <HeroPartners />
-          <h1 className="hero-event-title"><span>2027 JCI Vietnam</span><strong>Newyear Convention</strong></h1>
-          <div className="hero-theme"><span className="fine-line" /><p>Leading for <i>Impact</i></p></div>
+          <h1 className="hero-event-title"><span>2027 JCI Vietnam</span><img className="hero-title-artwork" src="/images/Text_NYC.png" alt="New Year Convention" width={1962} height={196} fetchPriority="high" /></h1>
+          <div className="hero-theme"><p aria-label="Leading for Impact"><span className="theme-leading">Leading</span>{' '}<span className="theme-for">for</span>{' '}<span className="theme-impact">Impact</span></p></div>
           <p className="hero-description">{t("Hội ngộ giữa miền di sản.")}<br />{t("Cùng khởi đầu một năm dẫn dắt và tạo tác động.")}</p>
           <div className="hero-buttons"><Link className="button gold" href="/dang-ky"><Ticket size={18} /> {t("Đăng ký ngay")}</Link><a href="#lich-trinh" className="button glass"><CalendarDays size={18} /> {t("Khám phá lịch trình")}</a></div>
           <div className="hero-meta"><span><CalendarDays size={18} />15–17.01.2027</span><span><MapPin size={18} />{t("Wyndham Grand Vedana, Ninh Bình")}</span></div>
