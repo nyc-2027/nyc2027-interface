@@ -42,7 +42,7 @@ export default function EventExperiences() {
 
     <section className="section pickleball-section">
       <div className="container pickleball-layout">
-        <img src="/images/pickleball-C57ik3Q2.webp" alt={t("Minh họa sân và vợt pickleball")} loading="lazy" />
+        <img src="/images/giai_pickleball.jpg" alt="Impactor Pickleball Cup · NYC 2027" loading="lazy" />
         <div>
           <p className="eyebrow mint">IMPACTOR PICKLEBALL CUP</p>
           <h2>{t("Mỗi cú đánh,")}<br /><em>{t("một kết nối mới.")}</em></h2>

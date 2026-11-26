@@ -181,6 +181,15 @@
 .immersive-site .assistant-fab { background: #6f142ae8; border-color: #f4cf8655; backdrop-filter: blur(12px); }
 
 /* Registration keeps its separate route, with a quieter editorial frame. */
+.cart-addon .addon-price { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+.cart-addon .addon-calculation { display: block; font-size: 11px; font-weight: 400; line-height: 1.5; color: #667b85; white-space: normal; text-align: right; }
+.live-payment-qr { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); align-items: center; }
+.payment-qr-image { width: min(420px, 100%); height: auto; margin-inline: auto; }
+.live-payment-qr > div:first-child > a { display: block; text-align: center; margin-top: 12px; }
+.payment-info .transfer-reference { display: block; font-size: 20px; line-height: 1.5; overflow-wrap: anywhere; }
+@media (max-width: 1000px) {
+  .live-payment-qr { grid-template-columns: 1fr; }
+}
 .registration-page { position: relative; isolation: isolate; background: #690019; }
 .registration-page::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, #690019ed, #690019f0), url('/images/trang-an.jpg') center top / cover fixed; }
 .registration-page-intro h1 { color: #f9dfac; }

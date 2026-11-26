@@ -1,0 +1,11 @@
+services:
+  flyway:
+    image: redgate/flyway:11
+    env_file: .env
+    environment:
+      FLYWAY_LOCATIONS: filesystem:/flyway/sql
+      FLYWAY_DEFAULT_SCHEMA: public
+      FLYWAY_CLEAN_DISABLED: 'true'
+    volumes:
+      - ./db/migration:/flyway/sql:ro
+    command: migrate

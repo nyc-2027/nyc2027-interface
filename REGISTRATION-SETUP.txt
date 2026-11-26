@@ -1,0 +1,62 @@
+Registration deployment
+
+1. Copy .env.example to .env. Set Supabase URL, server service-role key,
+   Flyway JDBC URL/user/password, and verify bank details and USD_VND_RATE.
+   Never expose the service-role key via NEXT_PUBLIC_ variables.
+2. Run: pnpm db:info
+   If public is non-empty and has no Flyway history, explicitly baseline at 0:
+   pnpm db:baseline
+3. Run: pnpm db:migrate
+   Subsequent changes go into V2__, V3__ migrations; do not edit applied versions.
+4. Deploy Next.js with server runtime support and the same server env variables.
+   Test creation, correct VietQR amount/reference, optional JPEG/PNG upload,
+   and pending -> reported in public.registrations on a configured Supabase project.
+
+Data: order_data stores registration fields and calculated package price;
+payment_data snapshots bank details, VND amount and exchange rate.
+status is the authoritative payment status column. Images are private objects in
+payment-receipts; receipt_path points to the object. No public read/write policy
+is created. Guest upload authorization requires a random per-order bearer token;
+only its SHA-256 hash is persisted in the database. Images are limited to 3 MB.
+
+Payment report does not mean payment confirmed. The existing /admin page is still
+the local demo and does not manage these Supabase registrations. Email is supported via Resend (see setup below); bank transaction webhooks are not implemented.
+If upload succeeds but the subsequent DB update fails, an unreferenced private
+object can remain; administrators may periodically remove unreferenced objects.
+The guest payment screen is restored from sessionStorage on reload in the same tab;
+closing the browser session may clear it. Do not share its access token. No live migration/transfer has
+been run without the project credentials.
+
+Sources: https://www.vietqr.io/generate
+https://supabase.com/docs/guides/api
+https://supabase.com/docs/guides/storage
+
+Validate applied migrations: pnpm db:validate
+Runner uses system Flyway, Docker if available, or installs verified portable Flyway in .tools/. Run pnpm db:setup to prepare it; pnpm db:version checks it. Configuration priority: environment > .env.flyway > .env. Requires Node.js 22+; first portable setup requires internet.
+Transfer reference: JCITL NYC <ASCII NAME, up to 23 characters> <16-character order suffix>.
+Existing registrations retain their original payment reference for reconciliation.
+
+Email setup (Resend)
+1. Set RESEND_API_KEY and EMAIL_FROM (e.g. NYC 2027 <events@your-verified-domain>).
+   Verify the sender domain in Resend. EMAIL_REPLY_TO is optional.
+   Set EMAIL_WEBHOOK_SECRET to a long random secret on the Next.js server.
+2. Run pnpm db:migrate to apply V2. No historical registrations are emailed by this migration.
+3. Supabase Dashboard -> Database Webhooks: table public.registration_emails,
+   event INSERT, method POST, URL https://YOUR_DOMAIN/api/email-dispatch.
+   Add Authorization: Bearer <EMAIL_WEBHOOK_SECRET> and Content-Type: application/json.
+   This endpoint fetches authoritative queued records; webhook body is not trusted.
+4. Registration creates a queued registered email; API also attempts immediate send.
+   After verifying the bank transaction, change registrations.status to confirmed.
+   The trigger queues a confirmed email and the webhook dispatches it.
+5. For recovery, schedule an authenticated POST to /api/email-dispatch periodically
+   (recommended every minute) or call it manually from your trusted server.
+   It sends at most 10 queued records per call; invoke again if backlog remains.
+   Monitor registration_emails.sent_at/provider_id/last_error and Resend delivery logs.
+   A provider ID means accepted for delivery, not guaranteed inbox placement.
+   Resend idempotency keys prevent duplicate retries for 24h; after a provider-accepted
+   send whose DB update failed, check provider logs before retrying beyond 24h.
+6. Test both VI and EN with a controlled recipient before opening registration.
+   No live test email is sent automatically during build/tests.
+
+Sources: https://resend.com/docs/api-reference/emails/send-email
+https://supabase.com/docs/guides/database/webhooks
