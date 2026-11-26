@@ -3,13 +3,13 @@
 import { useState } from 'react';
 import { LanguageSwitcher, LocalizedLink as Link, useLocale } from './locale-provider';
 import EventAgenda from './event-agenda';
-import { BusFront, CalendarDays, ChevronDown, Compass, Hotel, MapPin, Menu, MessageCircle, Plus, Sparkles, Ticket, Users, X } from './icon';
+import { BusFront, CalendarDays, ChevronDown, Compass, Hotel, MapPin, Menu, MessageCircle, Plus, Sparkles, Ticket, X } from './icon';
 import HeroVideo from './hero-video';
 import HeroPartners from './hero-partners';
 import Brand from './brand';
 import HeroCountdown from './hero-countdown';
 import ScrollReveal from './scroll-reveal';
-import EventActivities from './event-activities';
+import StoryChapters from './story-chapters';
 import EventExperiences from './event-experiences';
 
 const faqs = [
@@ -26,7 +26,7 @@ export default function EventLanding() {
   const [faq, setFaq] = useState<number | null>(0);
   const [assistant, setAssistant] = useState(false);
 
-  return <>
+  return <div className="immersive-site">
     <header className="site-header">
       <Brand href="#top" variant="lfi" />
       <nav className={menu ? 'main-nav is-open' : 'main-nav'} aria-label={t("Điều hướng chính")}>
@@ -42,11 +42,11 @@ export default function EventLanding() {
         <picture><source media="(max-width: 760px)" srcSet="/images/trang-an-mobile.jpg" /><img className="hero-photo" src="/images/trang-an.jpg" alt={t("Cảnh sông nước và núi đá vôi Tràng An, Ninh Bình")} fetchPriority="high" /></picture>
         <HeroVideo />
         <div className="hero-shade" />
-        <div className="hero-impact-waves" aria-hidden="true"><span /><span /><span /></div>
+
         <div className="container hero-content">
           <HeroPartners />
-          <h1 className="hero-event-title"><span>2027 JCI Vietnam</span><strong>Newyear Convention</strong></h1>
-          <div className="hero-theme"><span className="fine-line" /><p>Leading for <i>Impact</i></p></div>
+          <h1 className="hero-event-title"><span>2027 JCI Vietnam</span><img className="hero-title-artwork" src="/images/Text_NYC.png" alt="New Year Convention" width={1962} height={196} fetchPriority="high" /></h1>
+          <div className="hero-theme"><p aria-label="Leading for Impact"><span className="theme-leading">Leading</span>{' '}<span className="theme-for">for</span>{' '}<span className="theme-impact">Impact</span></p></div>
           <p className="hero-description">{t("Hội ngộ giữa miền di sản.")}<br />{t("Cùng khởi đầu một năm dẫn dắt và tạo tác động.")}</p>
           <div className="hero-buttons"><Link className="button gold" href="/dang-ky"><Ticket size={18} /> {t("Đăng ký ngay")}</Link><a href="#lich-trinh" className="button glass"><CalendarDays size={18} /> {t("Khám phá lịch trình")}</a></div>
           <div className="hero-meta"><span><CalendarDays size={18} />15–17.01.2027</span><span><MapPin size={18} />{t("Wyndham Grand Vedana, Ninh Bình")}</span></div>
@@ -56,13 +56,11 @@ export default function EventLanding() {
         <a href="#su-kien" className="scroll-cue">{t("CUỘN ĐỂ KHÁM PHÁ")} <ChevronDown size={15} /></a>
       </section>
 
-      <div className="event-strip"><div className="container strip-inner"><span><strong>03</strong> {t("ngày trải nghiệm")}</span><span><strong>02</strong> {t("đêm kết nối")}</span><span><strong>01</strong> {t("tinh thần tạo tác động")}</span><p>{t("GẶP GỠ. KẾT NỐI. CÙNG VƯƠN XA.")}<Sparkles size={20} /></p></div></div>
-
-      <section className="section intro-section" id="su-kien"><div className="container intro-grid"><div><p className="eyebrow mint">2027 JCI VIETNAM NEWYEAR CONVENTION</p><h2>{t("Một điểm hẹn.")}<br />{t("Ngàn kết nối.")}<br /><em>{t("Vạn tác động.")}</em></h2></div><div className="intro-copy"><p className="lead">{t("Một hành trình mới bắt đầu từ những cuộc gặp gỡ.")}</p><p>{t("Giữa cảnh sắc Ninh Bình, NYC 2027 mang cộng đồng JCI Vietnam đến gần nhau hơn — cùng nhìn lại, tôn vinh những dấu ấn và tiếp thêm cảm hứng cho năm mới.")}</p><div className="intro-highlights"><span><Users size={22} />{t("Kết nối cộng đồng")}</span><span><Sparkles size={22} />{t("Vinh danh tác động")}</span><span><Compass size={22} />{t("Khám phá di sản")}</span></div></div></div></section>
+      <StoryChapters />
 
       <EventAgenda />
 
-      <EventActivities />
+
 
       <section className="destination-section" id="ninh-binh"><img src="/images/ninh-binh.jpg" alt={t("Cảnh sắc thiên nhiên Ninh Bình")} loading="lazy" /><div className="destination-shade" /><div className="container destination-content"><p className="eyebrow">{t("HƠN CẢ MỘT CHUYẾN ĐI")}</p><h2>{t("Chạm miền di sản.")}<br /><em>{t("Chạm những cảm hứng mới.")}</em></h2><p>{t("Núi non, sông nước và những cuộc gặp gỡ.")}<br />{t("Ninh Bình chờ bạn viết tiếp hành trình của riêng mình.")}</p><a href="#diem-den" className="button gold"><Compass size={18} />{t("Khám phá điểm đến")}</a><span className="destination-caption"><MapPin size={15} />{t("NINH BÌNH, VIỆT NAM")}</span></div></section>
 
@@ -75,6 +73,6 @@ export default function EventLanding() {
     </main>
     <footer><div className="container footer-top"><Brand href="#top" /><p>{t("Được tổ chức bởi")} <strong>JCI Vietnam</strong><br />{t("Ninh Bình · Việt Nam")}</p><div><a href="#lich-trinh">{t("Lịch trình")}</a><Link href="/dang-ky">{t("Đăng ký tham dự")}</Link><a href="#hoi-dap">{t("Hỗ trợ")}</a></div></div><div className="container footer-bottom"><span>© 2027 JCI Vietnam Newyear Convention</span><span>{t("Gặp gỡ hôm nay. Tạo tác động ngày mai.")}</span></div></footer>
     <button className="assistant-fab" onClick={() => setAssistant(!assistant)} aria-label={t("Mở trợ lý NYC")}><Sparkles size={20} /><span>{t("Hỏi NYC")}</span><span className="soon-dot" /></button>
-    {assistant && <div className="assistant-popover" role="dialog" aria-label={t("Trợ lý NYC")}><div className="assistant-header"><Sparkles size={21} /><strong>{t("Người bạn đồng hành NYC")}</strong><button aria-label={t("Đóng trợ lý")} onClick={() => setAssistant(false)}><X size={18} /></button></div><div className="assistant-body"><span className="handbook-tag">{t("AI · SẮP RA MẮT")}</span><h3>{t("Chào bạn, hẹn gặp tại NYC!")}</h3><p>{t("Trợ lý AI đang được chuẩn bị. Trong lúc chờ, bạn có thể tìm nhanh các thông tin đã có:")}</p>{[[t("Lịch trình 3 ngày"), '#lich-trinh'], [t("Các hoạt động sự kiện"), '#hoat-dong'], [t("Địa điểm & di chuyển"), '#cam-nang'], [t("Câu hỏi thường gặp"), '#hoi-dap']].map(([label, href]) => <a key={href} href={href} onClick={() => setAssistant(false)}>{label}<ChevronDown size={15} /></a>)}</div></div>}
-  </>;
+    {assistant && <div className="assistant-popover" role="dialog" aria-label={t("Trợ lý NYC")}><div className="assistant-header"><Sparkles size={21} /><strong>{t("Người bạn đồng hành NYC")}</strong><button aria-label={t("Đóng trợ lý")} onClick={() => setAssistant(false)}><X size={18} /></button></div><div className="assistant-body"><span className="handbook-tag">{t("AI · SẮP RA MẮT")}</span><h3>{t("Chào bạn, hẹn gặp tại NYC!")}</h3><p>{t("Trợ lý AI đang được chuẩn bị. Trong lúc chờ, bạn có thể tìm nhanh các thông tin đã có:")}</p>{[[t("Lịch trình 3 ngày"), '#lich-trinh'], [t("Các hoạt động sự kiện"), '#su-kien'], [t("Địa điểm & di chuyển"), '#cam-nang'], [t("Câu hỏi thường gặp"), '#hoi-dap']].map(([label, href]) => <a key={href} href={href} onClick={() => setAssistant(false)}>{label}<ChevronDown size={15} /></a>)}</div></div>}
+  </div>;
 }
