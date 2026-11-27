@@ -6,7 +6,7 @@ export function confirmationEmail(payload: EmailPayload, kind: 'registered' | 'c
   const en = order.currency === 'USD';
   const paid = kind === 'confirmed';
   const heading = en ? (paid ? 'Payment confirmed' : 'Registration received') : (paid ? 'Xác nhận thanh toán thành công' : 'Đã nhận đăng ký tham dự');
-  const services = order.currency === 'USD' ? `${order.internationalPackageId === 'experience' ? 'Experience' : 'Delegate'} Package` : [`${order.tier === 'priority' ? 'Priority ' : ''}Impactor`, ...addons.filter(a => order.addons.includes(a.id)).map(a => a.name)].join(' · ');
+  const services = order.currency === 'USD' ? `${order.internationalPackageId === 'experience' ? 'Experience' : 'Delegate'} Package${order.addons.includes('golf') ? ' + Golf Tournament' : ''}` : [`${order.tier === 'priority' ? 'Priority ' : ''}Impactor`, ...addons.filter(a => order.addons.includes(a.id)).map(a => a.name)].join(' · ');
   const lines = [
     `${en ? 'Hello' : 'Xin chào'} ${order.name},`,
     en ? (paid ? 'The COC has verified your payment. See you at NYC 2027!' : 'Your registration has been saved. Payment has not yet been confirmed.') : (paid ? 'BTC đã đối soát và xác nhận thanh toán của bạn. Hẹn gặp bạn tại NYC 2027!' : 'Thông tin đăng ký đã được lưu. Thanh toán của bạn chưa được xác nhận.'),

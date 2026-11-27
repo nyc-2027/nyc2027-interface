@@ -1,0 +1,1 @@
+export const jciChapters = ['JCI Hội An', 'JCI Trevi', 'JCI Cần Thơ', 'JCI Bình Thuận', 'JCI Central Saigon', 'JCI Đà Lạt', 'JCI Đà Nẵng', 'JCI East Saigon', 'JCI Grace', 'JCI Green', 'JCI Hà Nội', 'JCI Hải Phòng', 'JCI Huế', 'JCI Khánh Hoà', 'JCI South Saigon', 'JCI Thăng Long', 'JCI Wonder Woman', 'Junior', 'Senator'].sort((a, b) => a.localeCompare(b, 'vi'));

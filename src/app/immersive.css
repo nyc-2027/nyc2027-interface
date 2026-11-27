@@ -181,6 +181,16 @@
 .immersive-site .assistant-fab { background: #6f142ae8; border-color: #f4cf8655; backdrop-filter: blur(12px); }
 
 /* Registration keeps its separate route, with a quieter editorial frame. */
+.accommodation-night { border: 1px solid #dce1e3; border-radius: 6px; margin: 20px 0; padding: 18px; min-width: 0; }
+.accommodation-night legend { padding: 0 8px; color: #690019; font-weight: 600; font-size: 15px; }
+.accommodation-night > p { font-size: 12px; color: #667b85; margin-bottom: 14px; }
+.stay-none { display: flex; align-items: center; gap: 10px; font-size: 13px; padding-bottom: 12px; }
+.accommodation-night .cart-addon { padding: 16px 10px; border-radius: 4px; outline: 1px solid transparent; outline-offset: -1px; }
+.accommodation-night .cart-addon:has(input:checked) { background: #f5edf0; outline-color: #bd6680; }
+.schedule-warning { margin: 18px 0; padding: 12px 16px; border-left: 3px solid #d29a28; background: #fff6dc; color: #785411; font-size: 13px; }
+.field-attention { border-color: #d51f40 !important; box-shadow: 0 0 0 3px #d51f4026; animation: field-alert .4s ease 3; }
+@keyframes field-alert { 50% { box-shadow: 0 0 0 5px #d51f4060; } }
+@media (prefers-reduced-motion: reduce) { .field-attention { animation: none; } }
 .payment-content .payment-receipt-field { margin-top: 24px; margin-bottom: 24px; }
 .cart-addon .addon-price { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
 .cart-addon .addon-calculation { display: block; font-size: 11px; font-weight: 400; line-height: 1.5; color: #667b85; white-space: normal; text-align: right; }

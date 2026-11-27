@@ -4,27 +4,27 @@ export type Tier = 'priority' | 'impactor';
 export type TravelMode = 'group' | 'individual';
 export function servicesForMode(mode: TravelMode, selected: string[]) {
   const allowed = addonsForMode(mode).map(a => a.id);
-  return mode === 'group' ? [...groupServices] : [...new Set(selected.filter(id => allowed.includes(id)))];
+  return [...new Set(selected.filter(id => allowed.includes(id)))];
 }
 export type Addon = { id: string; name: string; detail: string; price: number; category: 'transport' | 'stay' | 'experience' };
 export const addons: Addon[] = [
   { id: 'bus', name: 'Xe khứ hồi', detail: 'Hà Nội – Ninh Bình – Hà Nội', price: 500000, category: 'transport' },
-  { id: 'stay15', name: 'Wyndham · Đêm 15/01', detail: '820.000đ/phòng · 2 người · Bao gồm ăn sáng', price: 820000, category: 'stay' },
-  { id: 'stay16', name: 'Wyndham · Đêm 16/01', detail: '920.000đ/phòng · 2 người · Bao gồm ăn sáng', price: 920000, category: 'stay' },
+  { id: 'stay15', name: 'Wyndham · Đêm 15/01', detail: '820.000đ/người · Phòng 2 người · Bao gồm ăn sáng', price: 820000, category: 'stay' },
+  { id: 'stay16', name: 'Wyndham · Đêm 16/01', detail: '920.000đ/người · Phòng 2 người · Bao gồm ăn sáng', price: 920000, category: 'stay' },
   { id: 'villa15', name: 'Villa · Đêm 15/01', detail: '7.200.000đ/căn · 8 người', price: 7200000, category: 'stay' },
   { id: 'villa16', name: 'Villa · Đêm 16/01', detail: '8.200.000đ/căn · 8 người', price: 8200000, category: 'stay' },
   { id: 'tour15', name: 'Tour · Chiều 15/01', detail: 'Một hành trình nửa ngày khám phá Ninh Bình', price: 700000, category: 'experience' },
   { id: 'tour16', name: 'Tour · Chiều 16/01', detail: 'Một hành trình nửa ngày khám phá Ninh Bình', price: 700000, category: 'experience' },
   { id: 'tour17', name: 'Tour · Sáng 17/01', detail: 'Một hành trình nửa ngày khám phá Ninh Bình', price: 700000, category: 'experience' },
   { id: 'mineral', name: 'Tắm khoáng nóng', detail: '150.000đ/người', price: 150000, category: 'experience' },
+  { id: 'pickleball', name: 'Impactor Pickleball Cup', detail: 'Sáng 17/01 · 500.000đ/người', price: 500000, category: 'experience' },
   { id: 'ga01', name: 'JCI Vietnam General Assembly 01', detail: 'Chiều 15/01 · Miễn phí', price: 0, category: 'experience' },
   { id: 'thanglong', name: 'Inauguration Ceremony JCI Thanglong', detail: 'Sáng 16/01 · Miễn phí', price: 0, category: 'experience' },
   { id: 'awards', name: 'JCI Vietnam Awards', detail: 'Chiều 16/01 · Miễn phí', price: 0, category: 'experience' },
   { id: 'golf', name: 'Impactor Golf Cup', detail: 'Giải Golf Quốc tế NYC 2027 · 07:00 ngày 16/01', price: 3000000, category: 'experience' },
 ];
-export function addonsForMode(mode: TravelMode) { return addons.filter(a => mode === 'group' ? !['stay15', 'stay16'].includes(a.id) : !['villa15', 'villa16'].includes(a.id)); }
-export const groupServices = addonsForMode('group').map(addon => addon.id);
-export function serviceQuantity(id: string, quantity: number) { return id.startsWith('villa') ? Math.ceil(quantity / 8) : id.startsWith('stay') ? Math.ceil(quantity / 2) : quantity; }
+export function addonsForMode(mode: TravelMode) { return addons.filter(a => mode === 'group' || !['villa15', 'villa16'].includes(a.id)); }
+export function serviceQuantity(id: string, quantity: number) { return id.startsWith('villa') ? Math.ceil(quantity / 8) : quantity; }
 export function comboPrice(tier: Tier, member: MemberType) {
   return (tier === 'priority' ? 1950000 : 2200000) + (member === 'non-member' ? 100000 : 0);
 }
@@ -35,6 +35,7 @@ export function currentTier(date = new Date()): Tier {
   return date.getTime() < Date.parse('2026-12-13T00:00:00+07:00') ? 'priority' : 'impactor';
 }
 export type Order = {
+  handicap?: string;
   quantity?: number;
   currency?: 'VND' | 'USD';
   internationalPackageId?: 'delegate' | 'experience';
@@ -47,7 +48,7 @@ export type Order = {
 export const ORDER_KEY = 'nyc2027-demo-orders-v1';
 export function orderMoney(order: Pick<Order, 'currency' | 'total'>) {
   return order.currency === 'USD'
-    ? new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(order.total) + ' USD'
+    ? new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 2 }).format(order.total) + ' USD'
     : money(order.total);
 }
 export function confirmedRevenue(orders: Order[]) {

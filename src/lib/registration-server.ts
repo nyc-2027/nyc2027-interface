@@ -1,6 +1,7 @@
 import { createHash, randomBytes } from 'node:crypto';
 import { addons, calculateTotal, currentTier, servicesForMode, type Order } from './event';
 import { internationalPackages } from './international';
+import { jciChapters } from './chapters';
 
 export function digest(token: string) { return createHash('sha256').update(token).digest('hex'); }
 export async function supabase(path: string, init: RequestInit = {}) {
@@ -28,15 +29,22 @@ export function buildRegistration(input: Record<string, unknown>) {
   const international = input.currency === 'USD';
   const pack = internationalPackages.find(p => p.id === input.internationalPackageId);
   if (international && !pack) throw new Error('Invalid package');
+  if (international && input.addons.some(id => id !== 'golf')) throw new Error('Invalid international add-on');
   const quantity = !international && travelMode === 'group' ? input.quantity ?? 1 : 1;
   if (typeof quantity !== 'number' || !Number.isInteger(quantity) || quantity < 1 || quantity > 1000) throw new Error('Invalid ticket quantity');
   const chapter = text('chapter', 120, member === 'member');
+  if (!international && member === 'member' && !jciChapters.includes(chapter)) throw new Error('Invalid chapter');
+  if (!international && selected.some(id => id.startsWith('villa')) && quantity < 8) throw new Error('Villa requires at least 8 guests');
+  for (const night of ['15', '16']) if (selected.includes(`stay${night}`) && selected.includes(`villa${night}`)) throw new Error('Choose hotel or villa for each night');
+  const handicap = selected.includes('golf') ? text('handicap', 10, true) : undefined;
+  if (handicap !== undefined && (!Number.isFinite(Number(handicap)) || Number(handicap) < -10 || Number(handicap) > 54)) throw new Error('Invalid handicap');
   const country = text('country', 100, international);
-  const total = international ? pack!.price : calculateTotal(tier, member, selected, quantity);
   const rate = Number(process.env.USD_VND_RATE || 26000);
   if (!Number.isFinite(rate) || rate <= 0) throw new Error('Invalid exchange rate');
-  const order: Order = { quantity, id: `NYC27-${randomBytes(8).toString('hex').toUpperCase()}`, name: text('name', 120, true), email, phone: text('phone', 30, true), chapter, country, note: text('note', 1000), member, tier, travelMode, addons: international ? [] : selected, total, currency: international ? 'USD' : 'VND', ...(international ? { internationalPackageId: pack!.id } : {}), status: 'pending', createdAt: new Date().toISOString() };
-  const amount = international ? Math.round(total * rate) : total;
+  const golfVnd = international && selected.includes('golf') ? addons.find(a => a.id === 'golf')!.price : 0;
+  const total = international ? Math.round((pack!.price + golfVnd / rate) * 100) / 100 : calculateTotal(tier, member, selected, quantity);
+  const order: Order = { handicap, quantity, id: `NYC27-${randomBytes(8).toString('hex').toUpperCase()}`, name: text('name', 120, true), email, phone: text('phone', 30, true), chapter, country, note: text('note', 1000), member, tier, travelMode, addons: selected, total, currency: international ? 'USD' : 'VND', ...(international ? { internationalPackageId: pack!.id } : {}), status: 'pending', createdAt: new Date().toISOString() };
+  const amount = international ? Math.round(pack!.price * rate) + golfVnd : total;
   // Keep the reference short, ASCII-only, and unique even for identical names.
   const ascii = (value: string) => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[đĐ]/g, 'D').toUpperCase().replace(/[^A-Z0-9 ]/g, ' ').replace(/\s+/g, ' ').trim();
   const chapterCodes: Record<string, string> = { 'JCI HOI AN': 'JCIHA', 'JCI TREVI': 'JCITREVI', 'JCI CAN THO': 'JCICT', 'JCI BINH THUAN': 'JCIBT', 'JCI CENTRAL SAIGON': 'JCICSG', 'JCI DA LAT': 'JCIDL', 'JCI DA NANG': 'JCIDN', 'JCI EAST SAIGON': 'JCIESG', 'JCI GRACE': 'JCIGRACE', 'JCI HA NOI': 'JCIHN', 'JCI HAI PHONG': 'JCIHP', 'JCI HUE': 'JCIHUE', 'JCI KHANH HOA': 'JCIKH', 'JCI SOUTH SAIGON': 'JCISSG', 'JCI THANG LONG': 'JCITL', 'JCI WONDER WOMAN': 'JCIWW' };

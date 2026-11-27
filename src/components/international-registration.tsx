@@ -4,7 +4,7 @@ import { useEffect, useState, type FormEvent } from 'react';
 import Payment from './payment';
 import { register, restoreBooking, type Booking } from '@/lib/registration-client';
 import { internationalPackages, delegateBenefits, experienceBenefits, indicativeUsdRate, usd, type InternationalPackageId } from '@/lib/international';
-import { money, currentTier, type Order } from '@/lib/event';
+import { addons, money, currentTier, type Order } from '@/lib/event';
 import { Check, ShieldCheck, Ticket } from './icon';
 import { LocalizedLink as Link } from './locale-provider';
 
@@ -14,6 +14,10 @@ export default function InternationalRegistration() {
   const [booking, setBooking] = useState<Booking | null>(null); const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
   const selectedPackage = internationalPackages.find(item => item.id === packageId)!;
+  const [golf, setGolf] = useState(false);
+  const golfPrice = addons.find(item => item.id === 'golf')!.price;
+  const totalVnd = selectedPackage.price * indicativeUsdRate + (golf ? golfPrice : 0);
+  const displayTotal = totalVnd / indicativeUsdRate;
 
   useEffect(() => { const saved = restoreBooking(true); if (saved) { setBooking(saved); setStep(2); } }, []);
 
@@ -25,8 +29,9 @@ export default function InternationalRegistration() {
       name: String(form.get('name') ?? '').trim(), email: String(form.get('email') ?? '').trim(),
       phone: String(form.get('phone') ?? '').trim(), chapter: String(form.get('chapter') ?? '').trim(),
       note: String(form.get('note') ?? '').trim(), country: String(form.get('country') ?? '').trim(),
-      tier: currentTier(), member: 'non-member', travelMode: 'group', addons: [], currency: 'USD',
-      internationalPackageId: packageId, total: selectedPackage.price, status: 'pending', createdAt: new Date().toISOString(),
+      tier: currentTier(), member: 'non-member', travelMode: 'group', addons: golf ? ['golf'] : [], currency: 'USD',
+      handicap: golf ? String(form.get('handicap') ?? '') : undefined,
+      internationalPackageId: packageId, total: displayTotal, status: 'pending', createdAt: new Date().toISOString(),
     };
     if (!registration.name || !registration.email || !registration.country || !registration.phone) {
       setError('Please complete all required fields.');
@@ -53,8 +58,11 @@ export default function InternationalRegistration() {
             <span className="package-indicative">Approx. {money(item.price * indicativeUsdRate)}</span>
           </label>)}
         </fieldset>
+        <h3 className="cart-section-title">Optional experience</h3>
+        <label className="cart-addon"><input type="checkbox" checked={golf} onChange={e => setGolf(e.target.checked)} /><span>Golf Tournament<small>07:00 · 16 January 2027 · Tràng An Golf & Resort</small></span><strong className="addon-price">Approx. {usd(golfPrice / indicativeUsdRate)} USD<small>{money(golfPrice)} / person</small></strong></label>
         <div className="international-terms"><h3>Before you book</h3><ul><li>Airport transfers operate on the COC group schedule.</li><li>Flights, extra nights, single-room upgrades and private transfers outside the group schedule are not included.</li><li>No lunch on 17 January.</li></ul><p>Indicative conversion only: 1 USD = 26,000 VND, as stated in the event package poster.</p></div>
-        <div className="cart-total"><span>{selectedPackage.name}<small>01 delegate · Twin sharing</small></span><strong>{usd(selectedPackage.price)} USD</strong></div>
+        <div className="cart-total"><span>{selectedPackage.name}<small>01 delegate · Twin sharing{golf ? ' · Golf included' : ''}</small></span><strong>{golf ? 'Approx. ' : ''}{usd(displayTotal)} USD</strong></div>
+        {golf && <p className="showcase-note">Estimated bank transfer: {money(totalVnd)}. Golf is charged at {money(golfPrice)}; the exact VND total and configured exchange rate are shown with your payment QR.</p>}
         <button className="button navy full" onClick={() => setStep(1)}>Continue to delegate details</button>
       </div>}
       {step === 1 && <form className="registration-content" onSubmit={submit}>
@@ -64,10 +72,11 @@ export default function InternationalRegistration() {
           <label className="field">Email *<input name="email" type="email" autoComplete="email" required maxLength={180} /></label>
           <label className="field">Phone / WhatsApp *<input name="phone" type="tel" autoComplete="tel" required minLength={6} maxLength={30} placeholder="Include country code" /></label>
           <label className="field full-field">JCI organisation / Chapter<input name="chapter" maxLength={120} /></label>
+          {golf && <label className="field">Handicap *<input name="handicap" required type="number" min={-10} max={54} step="0.1" placeholder="e.g. 12.5" /><small>Enter your current handicap; decimal values are accepted.</small></label>}
           <label className="field full-field">Travel and dietary notes<textarea name="note" rows={3} maxLength={1000} placeholder="Flight details, dietary requirements, room sharing or other support…" /></label>
         </div>
         <label className="consent"><input type="checkbox" required />I consent to storing my registration details for event organisation and payment reconciliation.</label>
-        <div className="order-mini-summary"><Ticket size={20} /><span>{selectedPackage.name}</span><strong>{usd(selectedPackage.price)} USD</strong></div>
+        <div className="order-mini-summary"><Ticket size={20} /><span>{selectedPackage.name}{golf ? ' + Golf' : ''}</span><strong>{golf ? 'Approx. ' : ''}{usd(displayTotal)} USD</strong></div>
         <button className="button navy full" type="submit" disabled={busy}>{busy ? 'Generating…' : 'Get QR code'}</button>
         <button className="back-link" type="button" onClick={() => setStep(0)}>Back to packages</button>
       </form>}

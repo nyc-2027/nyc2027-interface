@@ -12,4 +12,4 @@ export const delegateBenefits = [
 export const experienceBenefits = [
   'Half-day Ninh Binh tour on 15 January', 'Private after-party for international delegates',
 ];
-export const usd = (value: number) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(value);
+export const usd = (value: number) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 2 }).format(value);

@@ -3,7 +3,7 @@ import { buildRegistration, digest, supabase } from '@/lib/registration-server';
 import { dispatchEmails } from '@/lib/email-server';
 export const runtime = 'nodejs';
 export async function POST(request: Request) {
-  if (Number(request.headers.get('content-length')) > 16000) return Response.json({ error: 'Request too large' }, { status: 413 });
+  if (Number(request.headers.get('content-length')) > 512000) return Response.json({ error: 'Request too large' }, { status: 413 });
   let booking;
   try { booking = buildRegistration(await request.json()); }
   catch { return Response.json({ error: 'Please check your registration details.' }, { status: 400 }); }
