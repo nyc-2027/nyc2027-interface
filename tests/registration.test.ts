@@ -9,13 +9,15 @@ test('server replaces client price, id and payment status', () => {
   assert.equal(order.status, 'pending');
   assert.notEqual(order.id, details.id);
   assert.equal(payment.amount, order.total);
-  assert.match(payment.transferContent, /^JCITL NYC JCIHN TEST DELEGATE [A-F0-9]{16}$/);
+  assert.match(payment.transferContent, /^JCITL NYC [A-F0-9]{16}$/);
   assert.equal(new URL(payment.qrUrl).searchParams.get('addInfo'), payment.transferContent);
 });
-test('transfer reference includes an ASCII name and preserves the full unique suffix', () => {
+test('transfer reference omits guest name and Chapter while preserving the full unique suffix', () => {
   const { payment } = buildRegistration({ ...details, name: 'Đặng Nguyễn Thị Ánh Hồng tên rất dài' });
-  assert.match(payment.transferContent, /^JCITL NYC JCIHN DANG NGUYEN THI A [A-F0-9]{16}$/);
-  assert.ok(payment.transferContent.length <= 50);
+  assert.match(payment.transferContent, /^JCITL NYC [A-F0-9]{16}$/);
+  assert.equal(payment.transferContent.length, 26);
+  const nonMember = buildRegistration({ ...details, member: 'non-member' });
+  assert.match(nonMember.payment.transferContent, /^JCITL NYC [A-F0-9]{16}$/);
 });
 test('group mode keeps only selected services; unknown services are rejected', () => {
   const { order } = buildRegistration({ ...details, travelMode: 'group' });

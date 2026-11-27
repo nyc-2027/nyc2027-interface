@@ -19,8 +19,7 @@ payment-receipts; receipt_path points to the object. No public read/write policy
 is created. Guest upload authorization requires a random per-order bearer token;
 only its SHA-256 hash is persisted in the database. Images are limited to 3 MB.
 
-Payment report does not mean payment confirmed. The existing /admin page is still
-the local demo and does not manage these Supabase registrations. Email is supported via Resend (see setup below); bank transaction webhooks are not implemented.
+Payment report does not mean payment confirmed. The /admin page reads live registrations after Supabase Auth login. Email is supported via Resend (see setup below); bank transaction webhooks are not implemented.
 If upload succeeds but the subsequent DB update fails, an unreferenced private
 object can remain; administrators may periodically remove unreferenced objects.
 The guest payment screen is restored from sessionStorage on reload in the same tab;
@@ -60,3 +59,41 @@ Email setup (Resend)
 
 Sources: https://resend.com/docs/api-reference/emails/send-email
 https://supabase.com/docs/guides/database/webhooks
+Admin login and Excel export
+1. In Supabase Dashboard -> Authentication -> Users -> Add user, create a dedicated
+   admin email/password account and confirm its email (Auto Confirm when creating).
+   Use a strong unique password. No admin password is stored in the website env.
+2. Add ADMIN_EMAILS=admin@your-domain to .env and your deployment environment.
+   Multiple admins: comma-separated emails. Restart the Next.js app after changes.
+   Only confirmed Supabase Auth users whose email appears in ADMIN_EMAILS may enter.
+3. Open /admin/login, sign in with that email and password. /admin and both list and
+   export APIs verify the session on the server. Session cookie is HttpOnly,
+   SameSite=Strict, Secure in production, and lasts at most one hour. Sign in again
+   after expiry. Removing an email from ADMIN_EMAILS revokes its admin permission.
+4. Search by ID, name, email, phone or Chapter; filter status; view details.
+   Export Excel downloads all matching registrations across pages, not just the
+   current page. Phone numbers and references are text, monetary values are numeric.
+5. Admin payment confirmation is available in each registration detail after V3. Manual confirmation can also be
+   performed by BTC in Supabase. No live admin account is created by the code.
+   No migration is needed for authentication: Supabase Auth already owns its tables.
+Confirm payment in admin
+- Run pnpm db:migrate to apply V3__admin_payment_confirmation.sql first.
+- In /admin, open Xem don, compare the exact VND amount and transfer reference
+  with the actual bank statement, tick the verification acknowledgement, then confirm.
+- Both pending and reported may transition to confirmed. The API revalidates admin
+  session and request origin, and writes confirmed_by (Auth user UUID), confirmed_at.
+- Concurrent/repeated confirmation does not overwrite the original audit fields.
+- Existing V2 trigger queues one confirmation email. The API attempts dispatch;
+  provider failures leave the order confirmed and the email queued for retry.
+- No live migration or payment confirmation was performed during automated tests.
+Payment reminders
+- Run pnpm db:migrate to apply V4 before using the reminder buttons.
+- Admin: individual reminder in order detail, or all pending orders via top button.
+  Bulk action covers all pending registrations regardless of the visible filters.
+- One reminder per order per Vietnam calendar day; repeated clicks do not duplicate.
+- reported/confirmed are excluded; dispatcher re-checks status before each reminder.
+- Bulk queues every eligible order, then immediately attempts at most 10 messages.
+  Keep the existing registration_emails INSERT webhook and/or authenticated periodic
+  POST /api/email-dispatch active so the rest of the queue is delivered and retried.
+- The queue count is not a delivered-email count. Inspect provider logs and sent_at.
+- No reminder emails have been sent during automated tests.
