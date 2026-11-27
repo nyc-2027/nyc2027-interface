@@ -46,13 +46,8 @@ export function buildRegistration(input: Record<string, unknown>) {
   const order: Order = { handicap, quantity, id: `NYC27-${randomBytes(8).toString('hex').toUpperCase()}`, name: text('name', 120, true), email, phone: text('phone', 30, true), chapter, country, note: text('note', 1000), member, tier, travelMode, addons: selected, total, currency: international ? 'USD' : 'VND', ...(international ? { internationalPackageId: pack!.id } : {}), status: 'pending', createdAt: new Date().toISOString() };
   const amount = international ? Math.round(pack!.price * rate) + golfVnd : total;
   // Keep the reference short, ASCII-only, and unique even for identical names.
-  const ascii = (value: string) => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[đĐ]/g, 'D').toUpperCase().replace(/[^A-Z0-9 ]/g, ' ').replace(/\s+/g, ' ').trim();
-  const chapterCodes: Record<string, string> = { 'JCI HOI AN': 'JCIHA', 'JCI TREVI': 'JCITREVI', 'JCI CAN THO': 'JCICT', 'JCI BINH THUAN': 'JCIBT', 'JCI CENTRAL SAIGON': 'JCICSG', 'JCI DA LAT': 'JCIDL', 'JCI DA NANG': 'JCIDN', 'JCI EAST SAIGON': 'JCIESG', 'JCI GRACE': 'JCIGRACE', 'JCI HA NOI': 'JCIHN', 'JCI HAI PHONG': 'JCIHP', 'JCI HUE': 'JCIHUE', 'JCI KHANH HOA': 'JCIKH', 'JCI SOUTH SAIGON': 'JCISSG', 'JCI THANG LONG': 'JCITL', 'JCI WONDER WOMAN': 'JCIWW' };
-  const chapterCode = member === 'member' ? chapterCodes[ascii(chapter)] || ascii(chapter).replace(/ /g, '').slice(0, 10) || 'JCI' : '';
-  const prefix = `JCITL NYC ${chapterCode ? `${chapterCode} ` : ''}`;
   const code = order.id.replace('NYC27-', '');
-  const transferName = (ascii(order.name) || 'NGUOI DANG KY').slice(0, 50 - prefix.length - code.length - 1).trim();
-  const transferContent = `${prefix}${transferName} ${code}`;
+  const transferContent = `JCITL NYC ${code}`;
   const bankId = process.env.BANK_ID || '970436';
   const account = process.env.BANK_ACCOUNT || '1050120408';
   const accountName = process.env.BANK_NAME || 'CLB DOANH NHAN TRE THE GIOI TAI VIET NAM';

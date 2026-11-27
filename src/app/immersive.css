@@ -181,6 +181,24 @@
 .immersive-site .assistant-fab { background: #6f142ae8; border-color: #f4cf8655; backdrop-filter: blur(12px); }
 
 /* Registration keeps its separate route, with a quieter editorial frame. */
+.admin-reminders { margin: 22px 0; }
+.admin-reminders > p, .admin-confirmation > p { font-size: 13px; margin: 12px 0; }
+.admin-confirmation { padding-block: 20px; }
+.admin-confirmation .consent { margin-bottom: 16px; }
+.admin-confirm-success { color: #176746; background: #edf8f1; padding: 14px; border-radius: 4px; font-size: 13px; }
+.admin-login { min-height: 100svh; display: grid; place-items: center; padding: 32px 20px; background: radial-gradient(ellipse at top, #a9133c, #4a0615); }
+.admin-login-card { width: min(440px, 100%); background: #fff; color: #30202a; padding: 32px; border-radius: 10px; }
+.admin-login-card .brand.identity .brand-caption > strong { color: #690019; }
+.admin-login-card h1 { font: 28px/1.4 'Lora', Georgia, serif; margin-top: 24px; }
+.admin-login-card > p { color: #667b85; font-size: 14px; margin: 10px 0 24px; }
+.admin-login-card form { display: grid; gap: 20px; }
+.admin-account { font-size: 12px; overflow-wrap: anywhere; color: #d6b5bb; }
+.admin-export-note { font-size: 12px; margin: 12px 0 20px; color: #667b85; }
+.admin-pagination { display: flex; gap: 16px; align-items: center; justify-content: space-between; margin-top: 24px; font-size: 13px; }
+.admin-detail dl { display: block; }
+.admin-detail-row { display: grid; grid-template-columns: minmax(100px, 1fr) minmax(0, 2fr); gap: 16px; padding: 12px 0; border-bottom: 1px solid #e6e1e3; }
+.admin-detail-row dd { margin: 0; overflow-wrap: anywhere; }
+@media (max-width: 760px) { .admin-account { display: none; } .admin-pagination { gap: 8px; font-size: 11px; } .admin-pagination .button { font-size: 11px; padding: 10px; } .admin-sidebar .button { font-size: 11px; padding: 8px; } }
 .accommodation-night { border: 1px solid #dce1e3; border-radius: 6px; margin: 20px 0; padding: 18px; min-width: 0; }
 .accommodation-night legend { padding: 0 8px; color: #690019; font-weight: 600; font-size: 15px; }
 .accommodation-night > p { font-size: 12px; color: #667b85; margin-bottom: 14px; }

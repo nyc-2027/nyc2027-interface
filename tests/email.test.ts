@@ -9,6 +9,16 @@ test('registration email escapes guest input and explicitly leaves payment uncon
   assert.ok(email.text.includes('chưa được xác nhận'));
   assert.ok(email.text.includes(payload.payment.transferContent));
 });
+test('reminder email includes payment reference and warns against paying twice', () => {
+  const email = confirmationEmail(payload, 'reminder');
+  assert.ok(email.subject.includes('Nhắc hoàn tất'));
+  assert.ok(email.text.includes(payload.payment.transferContent));
+  assert.ok(email.text.includes('không chuyển khoản lại'));
+  assert.ok(email.html.includes('img.vietqr.io/image/970436-1050120408'));
+  assert.ok(email.text.includes('amount=2450000'));
+  assert.ok(confirmationEmail(payload, 'reminder', true).html.includes('cid:payment-qr'));
+  assert.ok(!confirmationEmail(payload, 'confirmed').html.includes('cid:payment-qr'));
+});
 test('confirmed email acknowledges reconciliation; English package uses English content', () => {
   const paid = confirmationEmail(payload, 'confirmed');
   assert.ok(paid.text.includes('BTC đã đối soát'));
