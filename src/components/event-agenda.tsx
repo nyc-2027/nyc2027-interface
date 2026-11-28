@@ -33,7 +33,7 @@ export default function EventAgenda() {
         </div>
         <div className="program-layout">
           <figure className="program-visual">
-            <img key={activeDay} src={['/images/trang-an.jpg', '/images/times-97XoNChy.webp', '/images/hang-mua.jpg'][activeDay]} alt={selectedDay.theme[locale]} loading="lazy" />
+            <img key={activeDay} src={['/images/trangan.jpg', '/images/times-97XoNChy.jpg', '/images/hang-mua.jpg'][activeDay]} alt={selectedDay.theme[locale]} loading="lazy" />
             <figcaption><span>{selectedDay.date}.01.2027</span><h3>{selectedDay.theme[locale]}</h3></figcaption>
           </figure>
           <div className="program-copy">

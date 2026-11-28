@@ -75,14 +75,14 @@
 .story-opening > p:first-child { color: #e6bc8d; font-size: 13px; margin-bottom: 24px; }
 .story-opening > p:last-child { font-size: 15px; line-height: 1.9; color: var(--story-muted); max-width: 500px; margin: 25px auto 0; }
 .story-thread { position: relative; max-width: 1000px; margin: auto; }
-.story-thread::before { content: ''; position: absolute; left: 50%; top: 90px; bottom: 80px; width: 1px; background: linear-gradient(180deg, transparent, #e7b97780 10%, #85dbed80 50%, #597bff80 90%, transparent); }
+.story-thread::before { content: ''; position: absolute; left: 50%; transform: translateX(-50%); top: 90px; bottom: 80px; width: 1px; background: linear-gradient(180deg, transparent, #e7b97780 10%, #85dbed80 50%, #597bff80 90%, transparent); }
 .story-chapter { display: grid; grid-template-columns: minmax(0, 1fr) 48px minmax(0, 1fr); align-items: center; min-height: 270px; position: relative; }
 .chapter-photographs { position: relative; height: 260px; grid-column: 1; grid-row: 1; }
 .chapter-diamond { position: absolute; width: 196px; height: 196px; transform: rotate(45deg); overflow: hidden; top: 25px; left: 50%; margin-left: -108px; }
 .chapter-diamond img { width: 100%; height: 100%; object-fit: cover; transform: rotate(-45deg) scale(1.46); }
 .chapter-detail { width: 92px; height: 92px; position: absolute; right: 15px; bottom: 10px; transform: rotate(45deg); overflow: hidden; border: 6px solid var(--story-base); }
 .chapter-detail img { width: 100%; height: 100%; object-fit: cover; transform: rotate(-45deg) scale(1.5); }
-.chapter-point { grid-column: 2; grid-row: 1; justify-self: center; width: 7px; height: 7px; border-radius: 50%; background: #f4cf86; box-shadow: 0 0 0 5px var(--story-base); z-index: 1; }
+.chapter-point { grid-column: 2; grid-row: 1; justify-self: center; width: 14px; height: 14px; border-radius: 50%; background: #f4cf86; box-shadow: 0 0 0 5px var(--story-base); z-index: 1; }
 .chapter-copy { grid-column: 3; grid-row: 1; padding: 24px 0 24px 25px; }
 .chapter-copy time { font-size: 11px; letter-spacing: .8px; color: #9be8f5; }
 .chapter-copy h3 { font: 24px/1.45 'Lora', Georgia, serif; margin: 11px 0 14px; max-width: 370px; }
@@ -319,7 +319,7 @@
   .story-opening { margin-bottom: 45px; }
   .story-opening > p:first-child { font-size: 12px; margin-bottom: 20px; }
   .story-opening > p:last-child { font-size: 14px; }
-  .story-thread::before { left: 9px; top: 30px; bottom: 30px; }
+  .story-thread::before { left: 10px; top: 30px; bottom: 30px; }
   .story-chapter { grid-template-columns: 20px minmax(0, 1fr); gap: 0 20px; padding-block: 20px; }
   .chapter-point { grid-column: 1; grid-row: 2; align-self: start; margin-top: 26px; }
   .chapter-photographs, .story-chapter-reverse .chapter-photographs { grid-column: 2; grid-row: 1; height: 220px; }
