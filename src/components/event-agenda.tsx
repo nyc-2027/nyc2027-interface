@@ -4,6 +4,7 @@ import { useRef, useState } from 'react';
 import { program } from '@/lib/agenda';
 import { LocalizedLink as Link, useLocale } from './locale-provider';
 import { CalendarDays, Clock3 } from './icon';
+import SessionLocation from './session-location';
 
 export default function EventAgenda() {
   const { locale, t } = useLocale();
@@ -58,6 +59,7 @@ export default function EventAgenda() {
                       {session.module && <span className="program-module">{t('Đăng ký riêng')}</span>}
                       <h3>{session.name[locale]}</h3>
                       <p>{session.description[locale]}</p>
+                      <SessionLocation session={session} />
                     </div>
                   </article>
                 ))}
@@ -65,6 +67,18 @@ export default function EventAgenda() {
             </div>
           </div>
         </div>
+        <aside className="resort-activities">
+          <h3>{locale === 'en' ? 'More experiences at Wyndham' : 'Trải nghiệm thêm tại Wyndham'}</h3>
+          <p><strong>{locale === 'en' ? 'Complimentary: ' : 'Miễn phí: '}</strong>{locale === 'en' ? 'Kayaking, cycling.' : 'Chèo thuyền kayak, đạp xe.'}</p>
+          <p><strong>{locale === 'en' ? 'Additional charge: ' : 'Có tính phí: '}</strong>{locale === 'en' ? 'Go-kart racing, hot mineral bathing, pickleball.' : 'Đua xe go-kart, tắm khoáng nóng, pickleball, bể bơi 4 mùa.'}</p>
+          <h3>{locale === 'en' ? 'Amenities at Wyndham' : 'Một số tiện ích tại Wyndham'}</h3>
+          <ul>
+            <li>{locale === 'en' ? 'Tre Restaurant, Muong Restaurant' : 'Nhà hàng Tre, Nhà hàng Mường'}</li>
+            <li>The Tre Cafe, SYX Rooftop Lounge &amp; {locale === 'en' ? 'Bar' : 'Quầy bar'}</li>
+            <li>Karaoke – Melody Club</li>
+            <li>{locale === 'en' ? 'Gym & billiards, Kids Zone' : 'Phòng gym & billiards, Kids Zone'}</li>
+          </ul>
+        </aside>
         <div className="program-footer"><p>{t('Lịch trình dự kiến, có thể điều chỉnh theo thông báo từ BTC.')}</p><Link className="button gold" href="/dang-ky">{t('Đăng ký tham dự')}</Link></div>
       </div>
     </section>

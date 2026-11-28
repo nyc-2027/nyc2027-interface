@@ -50,10 +50,10 @@ Vinh danh những cá nhân, dự án và chapter đã tạo nên tác động n
 
 ### NGÀY 3 – 17/01/2027 | LAN TỎA · MOMENTUM
 
-**07:30 – Giải Pickleball Giao hữu NYC 2027**
+**Chiều – Giải Pickleball Giao hữu NYC 2027**
 *NYC 2027 Pickleball Friendly*
-Buổi sáng sôi động để các chapter cùng giao lưu, rèn sức và lan tỏa tinh thần đồng đội trước khi lên đường.
-*An energetic morning of friendly matches across chapters before the journey home.*
+Buổi chiều sôi động để các chapter cùng giao lưu, rèn sức và lan tỏa tinh thần đồng đội trước khi lên đường.
+*An energetic afternoon of friendly matches across chapters before the journey home.*
 
 **08:00 – Tour khám phá Di sản Ninh Bình**
 *Ninh Binh Heritage Tour*

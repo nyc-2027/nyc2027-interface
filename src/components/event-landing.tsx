@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { BotMessageSquare } from 'lucide-react';
+import { BotMessageSquare } from './icon';
 import { LanguageSwitcher, LocalizedLink as Link, useLocale } from './locale-provider';
 import EventAgenda from './event-agenda';
 import { BusFront, CalendarDays, ChevronDown, Compass, Hotel, MapPin, Menu, MessageCircle, Plus, Sparkles, Ticket, X } from './icon';
@@ -10,6 +10,7 @@ import HeroPartners from './hero-partners';
 import Brand from './brand';
 import HeroCountdown from './hero-countdown';
 import ScrollReveal from './scroll-reveal';
+import AmbientLights from './ambient-lights';
 import EventChatbot from './event-chatbot';
 import StoryChapters from './story-chapters';
 import EventExperiences from './event-experiences';
@@ -28,7 +29,7 @@ export default function EventLanding() {
   const [faq, setFaq] = useState<number | null>(0);
   const [assistant, setAssistant] = useState(false);
 
-  return <div className="immersive-site">
+  return <div className="immersive-site"><AmbientLights />
     <header className="site-header">
       <Brand href="#top" variant="lfi" />
       <nav className={menu ? 'main-nav is-open' : 'main-nav'} aria-label={t("Điều hướng chính")}>
@@ -74,7 +75,7 @@ export default function EventLanding() {
       <section className="closing-section"><div className="container"><p className="eyebrow">{t("15 – 17.01.2027 · NINH BÌNH")}</p><h2>{t("Hẹn bạn ở")} <em>{t("khởi đầu mới.")}</em></h2><Link className="button navy" href="/dang-ky"><Ticket size={18} />{t("Trở thành một phần của NYC 2027")}</Link></div></section>
     </main>
     <footer><div className="container footer-top"><Brand href="#top" /><p>{t("Được tổ chức bởi")} <strong>JCI Vietnam</strong><br />{t("Ninh Bình · Việt Nam")}</p><div><a href="#lich-trinh">{t("Lịch trình")}</a><Link href="/dang-ky">{t("Đăng ký tham dự")}</Link><a href="#hoi-dap">{t("Hỗ trợ")}</a><a href="tel:0941752949">0941752949 · Đỗ Diệu Linh</a></div></div><div className="container footer-bottom"><span>© 2027 JCI Vietnam Newyear Convention</span><span>{t("Gặp gỡ hôm nay. Tạo tác động ngày mai.")}</span></div></footer>
-    <button className="assistant-fab chatbot-launcher" onClick={() => setAssistant(!assistant)} aria-expanded={assistant} aria-label={t("Mở trợ lý NYC")} title={t("Mở trợ lý NYC")}><BotMessageSquare size={28} /><span className="chatbot-ai-badge">AI</span><span className="sr-only">NYC 2027 AI</span></button>
+    <button className="assistant-fab chatbot-launcher" onClick={() => setAssistant(!assistant)} aria-expanded={assistant} aria-label={"HeyLongs"} title={"HeyLongs"}><BotMessageSquare size={28} /><span className="chatbot-ai-badge">AI</span><span className="sr-only">HeyLongs</span></button>
     {assistant && <EventChatbot onClose={() => setAssistant(false)} />}
   </div>;
 }

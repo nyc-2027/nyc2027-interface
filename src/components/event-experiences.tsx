@@ -1,6 +1,7 @@
 'use client';
 import { LocalizedLink as Link } from './locale-provider';
 import { useLocale } from './locale-provider';
+import HeritageMarquee from './heritage-marquee';
 import { CalendarDays, MapPin } from './icon';
 
 type Photo = { image: string; title: string; description: string };
@@ -48,7 +49,7 @@ export default function EventExperiences() {
           <h2>{t("Mỗi cú đánh,")}<br /><em>{t("một kết nối mới.")}</em></h2>
           <p>{t("Khép lại hành trình NYC 2027 bằng những trận đấu giao hữu và tinh thần gắn kết của cộng đồng JCI.")}</p>
           <dl className="experience-details">
-            <div><dt>{t("Thời gian")}</dt><dd>{t("07:30 · Chủ Nhật, 17/01/2027")}</dd></div>
+            <div><dt>{t("Thời gian")}</dt><dd>{locale === 'en' ? 'Afternoon · Sunday, 17 January 2027' : 'Chiều · Chủ Nhật, 17/01/2027'}</dd></div>
             <div><dt>{t("Địa điểm")}</dt><dd>{t('Khu Wyndham Grand Vedana')}</dd></div>
             <div><dt>{t("Thông tin tham gia")}</dt><dd>{t("Thể thức và hướng dẫn đăng ký sẽ được BTC cập nhật.")}</dd></div>
           </dl>
@@ -65,7 +66,6 @@ export default function EventExperiences() {
           <p>{t("Wyndham Grand Vedana Ninh Bình — điểm dừng chân cho những ngày hội ngộ, giữa cảnh quan hồ nước và núi rừng.")}</p>
         </div>
         <div className="experience-grid stay-mosaic">
-          <PhotoCard image="vedana-bungalow.jpg" title={t("Bungalow mặt hồ")} description={locale === 'en' ? 'An intimate bamboo retreat overlooking the lake.' : 'Không gian mái tre ấm cúng, mở tầm nhìn ra mặt hồ.'} />
           <PhotoCard image="vedana-deluxe.jpg" title={t("Phòng khách sạn")} description={locale === 'en' ? 'A restful room with a balcony and mountain views.' : 'Phòng nghỉ có ban công, đón ánh sáng và cảnh núi xanh.'} />
           <PhotoCard image="vedana-villa.jpg" title="Villa" description={t("Không gian nghỉ ngơi và kết nối cho nhóm bạn.")} />
         </div>
@@ -84,7 +84,7 @@ export default function EventExperiences() {
         <div className="experience-grid three-columns">
           <PhotoCard image="times-97XoNChy.jpg" title="Times Hall" description={t("Hội trường không cột, không gian cho lễ vinh danh và Gala.")} />
           <PhotoCard image="tre-res.jpg" title={t("Nhà hàng Tre")} description={t("Kiến trúc mái tre và không gian mở bên hồ cho những bữa tiệc kết nối.")} />
-          <PhotoCard image="warriors.jpg" title="Warriors" description={t("Phòng họp trang bị màn hình LED, phục vụ các phiên làm việc.")} />
+          <PhotoCard image="warriors-BaE__94o.webp" title="Warriors" description={t("Phòng họp trang bị màn hình LED, phục vụ các phiên làm việc.")} />
         </div>
       </div>
     </section>
@@ -92,7 +92,7 @@ export default function EventExperiences() {
     <section className="section heritage-section" id="diem-den">
       <div className="container">
         <div className="section-heading"><div><p className="eyebrow blue">{t("ĐỊA ĐIỂM THAM QUAN")}</p><h2>{t("Ninh Bình,")}<br /><em>{t("chạm miền di sản.")}</em></h2></div><p className="heading-description">{t("Gợi ý khám phá trong chuyến đi.")}<br />{t("Tuyến tour cụ thể sẽ được BTC thông báo.")}</p></div>
-        <div className="experience-grid three-columns">
+        <HeritageMarquee>
           {[
             { image: 'trang-an.jpg', title: t("Tràng An"), description: t("Lên thuyền giữa núi đá vôi và dòng nước xanh.") },
             { image: 'tam-coc.jpg', title: t("Tam Cốc"), description: t("Sông nước, ruộng lúa và những dãy núi đá.") },
@@ -101,7 +101,7 @@ export default function EventExperiences() {
             { image: 'hoa-lu.jpg', title: t("Cố đô Hoa Lư"), description: t("Tìm về những dấu tích thời Đinh – Tiền Lê.") },
             { image: 'cuc-phuong.jpg', title: t("Cúc Phương"), description: t("Đi giữa màu xanh của rừng quốc gia.") },
           ].map(photo => <PhotoCard key={photo.title} {...photo} />)}
-        </div>
+        </HeritageMarquee>
       </div>
     </section>
   </>;

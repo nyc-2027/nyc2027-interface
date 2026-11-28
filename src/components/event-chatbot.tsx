@@ -29,11 +29,11 @@ export default function EventChatbot({ onClose }: { onClose: () => void }) {
       if (!controller.current?.signal.aborted) setError(e instanceof Error && e.message === 'limit' ? (en ? 'The assistant has reached its question limit. Please contact the COC or try again later.' : 'Trợ lý đã đạt giới hạn câu hỏi. Vui lòng liên hệ BTC hoặc thử lại sau.') : (en ? 'The assistant is temporarily unavailable. Please retry or contact the COC.' : 'Trợ lý tạm thời chưa trả lời được. Bạn thử lại hoặc liên hệ BTC nhé.'));
     } finally { setPending(''); }
   }
-  return <section className="assistant-popover event-chatbot" role="dialog" aria-label={en ? 'NYC event assistant' : 'Trợ lý sự kiện NYC'} onKeyDown={e => { if (e.key === 'Escape') onClose(); }}>
-    <div className="assistant-header"><Sparkles size={21} /><strong>{en ? 'NYC 2027 Assistant' : 'Trợ lý NYC 2027'}</strong><button aria-label={en ? 'Close' : 'Đóng'} onClick={onClose}><X size={18} /></button></div>
+  return <section className="assistant-popover event-chatbot" role="dialog" aria-label={'HeyLongs'} onKeyDown={e => { if (e.key === 'Escape') onClose(); }}>
+    <div className="assistant-header"><Sparkles size={21} /><strong>{'HeyLongs'}</strong><button aria-label={en ? 'Close' : 'Đóng'} onClick={onClose}><X size={18} /></button></div>
     <div className="chat-messages" role="log" aria-live="polite" aria-relevant="additions">
       {!messages.length && <p className="chat-welcome">{en ? 'Hello! Ask me about tickets, schedules, accommodation or services for NYC 2027.' : 'Chào bạn! Mình có thể hỗ trợ thông tin vé, lịch trình, lưu trú và các dịch vụ NYC 2027.'}</p>}
-      {messages.map((message, index) => <div className={`chat-bubble chat-${message.role}`} key={index}><small>{message.role === 'user' ? (en ? 'You' : 'Bạn') : 'NYC AI'}</small>{message.role === 'model' ? <ChatMarkdown text={message.text} animate={index === messages.length - 1} onTyping={setTyping} /> : <p>{message.text}</p>}</div>)}
+      {messages.map((message, index) => <div className={`chat-bubble chat-${message.role}`} key={index}><small>{message.role === 'user' ? (en ? 'You' : 'Bạn') : 'HeyLongs'}</small>{message.role === 'model' ? <ChatMarkdown text={message.text} animate={index === messages.length - 1} onTyping={setTyping} /> : <p>{message.text}</p>}</div>)}
       {pending && <><div className="chat-bubble chat-user"><small>{en ? 'You' : 'Bạn'}</small><p>{pending}</p></div><p role="status">{en ? 'Preparing an answer…' : 'Đang trả lời…'}</p></>}
       {error && <p className="form-error" role="alert">{error}</p>}<div ref={bottom} />
     </div>

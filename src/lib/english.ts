@@ -59,7 +59,7 @@ export const english: Record<string, string> = {
   'Đăng ký Golf Tournament': 'View registration options', 'Minh họa sân và vợt pickleball': 'An illustration of a pickleball court and paddle',
   'Mỗi cú đánh,': 'Every rally,', 'một kết nối mới.': 'a new connection.',
   'Khép lại hành trình NYC 2027 bằng những trận đấu giao hữu và tinh thần gắn kết của cộng đồng JCI.': 'Round off NYC 2027 with friendly matches and the shared spirit of the JCI community.',
-  'Thời gian': 'Time', '07:30 · Chủ Nhật, 17/01/2027': '07:30 · Sunday, 17 January 2027',
+  'Thời gian': 'Time',
   'Địa điểm': 'Venue', 'Khu Wyndham Grand Vedana': 'Wyndham Grand Vedana resort',
   'Thông tin tham gia': 'Participation', 'Thể thức và hướng dẫn đăng ký sẽ được BTC cập nhật.': 'The COC will announce the format and registration details.',
   'Xem lịch trình hoạt động': 'View the program', 'PHÒNG NGHỈ & TIỆN ÍCH': 'ACCOMMODATION & AMENITIES',
