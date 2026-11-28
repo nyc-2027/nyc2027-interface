@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 540" fill="none">
+<defs>
+<linearGradient id="mount" x2="0" y2="1"><stop stop-color="#147fe6"/><stop offset="1" stop-color="#061362"/></linearGradient>
+<linearGradient id="edge"><stop stop-color="#1490ff" stop-opacity="0"/><stop offset=".3" stop-color="#00d8ff"/><stop offset=".6" stop-color="#c1ffff"/><stop offset="1" stop-color="#128cff" stop-opacity="0"/></linearGradient>
+<radialGradient id="halo"><stop stop-color="#05d9ff" stop-opacity=".65"/><stop offset="1" stop-color="#008cff" stop-opacity="0"/></radialGradient>
+<pattern id="weave" width="84" height="32" patternUnits="userSpaceOnUse"><path fill="#002aae" d="M0 0h84v32H0z"/><path d="m10 16 16-11 16 11-16 11z" stroke="#ffd36b" stroke-width="2"/><path d="m17 16 9-6 9 6-9 6z" stroke="#00e7ff" stroke-width="2"/><path d="m57 8 12 16m0-16L57 24" stroke="#ff5d5f" stroke-width="3"/></pattern>
+<filter id="glow"><feGaussianBlur stdDeviation="8"/></filter><filter id="reflect"><feGaussianBlur stdDeviation="5"/></filter>
+</defs>
+<ellipse cx="900" cy="295" rx="850" ry="210" fill="url(#halo)"/>
+<path d="M0 340 85 293 141 313 218 249 267 271 334 196 390 234 427 212 490 284 539 263 594 308 652 256 699 290 776 213 820 238 869 202 939 265 990 244 1057 300 1128 262 1182 291 1256 223 1324 256 1395 210 1494 285 1600 253V480H0Z" fill="#104fc0" opacity=".5"/>
+<path d="M0 382 93 343 167 365 220 323 280 351 336 294 383 327 440 308 503 373 558 354 622 382 710 320 757 348 831 283 883 322 941 301 1003 364 1082 339 1157 382 1237 317 1300 341 1380 284 1449 333 1520 312 1600 354V490H0Z" fill="url(#mount)"/>
+<path d="M0 382 93 343 167 365 220 323 280 351 336 294 383 327 440 308 503 373 558 354 622 382 710 320 757 348 831 283 883 322 941 301 1003 364 1082 339 1157 382 1237 317 1300 341 1380 284 1449 333 1520 312 1600 354" stroke="url(#edge)" stroke-width="2"/>
+<path d="M-40 373C240 248 469 507 825 414S1260 239 1640 331" stroke="#00d8ff" stroke-width="48" opacity=".5" filter="url(#glow)"/>
+<path d="M-40 373C240 248 469 507 825 414S1260 239 1640 331" stroke="#c4fdff" stroke-width="39"/>
+<path d="M-40 373C240 248 469 507 825 414S1260 239 1640 331" stroke="url(#weave)" stroke-width="30"/>
+<path d="M-40 405C240 280 469 539 825 446S1260 271 1640 363" stroke="#e139e6" stroke-width="2" opacity=".8"/>
+<path d="M0 468H1600" stroke="#00cfff" opacity=".4"/>
+<g filter="url(#reflect)"><ellipse cx="345" cy="486" rx="95" ry="9" fill="#ffd36b" opacity=".75"/><ellipse cx="800" cy="485" rx="115" ry="8" fill="#00eaff" opacity=".7"/><ellipse cx="1230" cy="489" rx="120" ry="9" fill="#ffd36b" opacity=".7"/><ellipse cx="650" cy="512" rx="230" ry="5" fill="#026cff"/><ellipse cx="1230" cy="520" rx="170" ry="4" fill="#ffc94b" opacity=".4"/></g>
+<g stroke="url(#edge)" opacity=".45"><path d="M50 478h1500M160 490h1300M70 503h1450M220 518h1140M0 531h1600"/></g>
+</svg>

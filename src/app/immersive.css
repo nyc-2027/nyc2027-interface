@@ -1,15 +1,17 @@
-/* Crimson event identity, with gold light and the cyan of JCI. */
+/* Cobalt night, cyan light and warm reflections: NYC 2027 event identity. */
 :root {
-  --deep: #690019;
-  --panel: #820321;
+  --deep: #050d55;
+  --panel: #103b9c;
   --gold: #f4cf86;
-  --mint: #e8b7ce;
+  --mint: #89e7ff;
+  --event-blue: #087bff;
+  --blue: #1454ad;
 }
 .immersive-site {
-  --story-base: #690019;
-  --story-text: #fff2e4;
-  --story-muted: #d6b5bb;
-  background: radial-gradient(ellipse 75% 650px at 0 24%, #ce002e40, transparent), radial-gradient(ellipse 70% 900px at 100% 68%, #b9002533, transparent), var(--story-base);
+  --story-base: #050d55;
+  --story-text: #edf5ff;
+  --story-muted: #afc7e8;
+  background: radial-gradient(ellipse 75% 650px at 0 24%, #087aff40, transparent), radial-gradient(ellipse 70% 900px at 100% 68%, #00b5ff26, transparent), var(--story-base);
   color: var(--story-text);
   overflow: clip;
 }
@@ -23,7 +25,7 @@
 .immersive-site .main-nav { gap: 23px; }
 .immersive-site .main-nav > a { font-size: 12px; }
 .immersive-site .hero { height: 100svh; height: 100dvh; padding-top: 103px; padding-bottom: 72px; min-height: 0; }
-.immersive-site .hero-shade { background: linear-gradient(180deg, #17091180 0%, #17091126 28%, #17091133 65%, #69001999 88%, #690019 100%), linear-gradient(90deg, #69001933, transparent 35%, transparent 65%, #69001933); }
+.immersive-site .hero-shade { background: linear-gradient(180deg, #07153d80 0%, #07153d26 28%, #07153d33 65%, #050d5599 88%, #050d55 100%), linear-gradient(90deg, #050d5533, transparent 35%, transparent 65%, #050d5533); }
 .immersive-site .hero-content { align-items: center; justify-content: center; text-align: center; gap: clamp(12px, 1.8svh, 22px); }
 .immersive-site .hero h1.hero-event-title { max-width: 1000px; font-family: 'Lora', Georgia, serif; font-size: clamp(44px, min(7.3vw, 8svh), 100px); line-height: 1.05; letter-spacing: -.04em; text-wrap: balance; text-shadow: 0 2px 40px #0002; }
 .immersive-site .hero-event-title > span { font-family: 'Be Vietnam Pro', Arial, sans-serif; font-size: .24em; letter-spacing: .14em; margin-bottom: 20px; color: #fff1df; }
@@ -43,34 +45,37 @@
 .immersive-site .hero-theme i { font-style: normal; color: inherit; }
 .immersive-site .hero-description { display: none; }
 .immersive-site .hero-buttons, .immersive-site .hero-meta { justify-content: center; }
-.immersive-site .hero-meta { font-size: 12px; color: #f1d9d9; }
+.immersive-site .hero-meta { font-size: 12px; color: #e1edff; }
 .immersive-site .hero-meta > span:first-child, .immersive-site .hero-meta svg { color: #9be8f5; }
 .immersive-site .hero-location { display: none; }
-.immersive-site .hero-partners.partner-ribbon { border-radius: 7px; padding: 9px 18px; background: linear-gradient(110deg, #e9c4bbad, #e6bac8b3 55%, #d5bed7a6); box-shadow: 0 10px 36px #26000c26; border-color: #ffe5cd40; }
-.immersive-site .partner-ribbon .partner-role { color: #4a2030; }
+.immersive-site .hero-partners.partner-ribbon { border-radius: 7px; padding: 9px 18px; background: linear-gradient(110deg, #bdedffa6, #c3d6f5b3 55%, #b7c9f2a6); box-shadow: 0 10px 36px #00134426; border-color: #c4efff50; }
+.immersive-site .partner-ribbon .partner-role { color: #103064; }
 .immersive-site .partner-ribbon .partner-logo-surface { min-height: 48px; }
 .immersive-site .partner-ribbon .partner-yba { width: 43px; height: 43px; }
 .immersive-site .partner-ribbon .partner-jci { height: 46px; }
 .immersive-site .partner-ribbon .partner-lfi { width: 43px; height: 46px; }
 .immersive-site .hero-countdown { gap: 16px; }
-.immersive-site .countdown-number { background: linear-gradient(145deg, #8b173847, #33031080); color: #f4cf86; box-shadow: inset 0 1px 0 #ffdfa512; border-color: #e9b98a4d; height: 55px; font-size: 31px; }
-.immersive-site .countdown-label, .immersive-site .scroll-cue { color: #e0bfc4; }
+.immersive-site .countdown-number { background: linear-gradient(145deg, #087bff33, #030a4c99); color: #f4cf86; box-shadow: inset 0 1px 0 #b8f5ff20; border-color: #79dfff55; height: 55px; font-size: 31px; }
+.immersive-site .countdown-label, .immersive-site .scroll-cue { color: #b6d2f2; }
 .immersive-site .countdown-label { font-size: 9px; }
 .immersive-site .scroll-cue { bottom: 23px; }
 .immersive-site .button { border-radius: 2px; min-height: 48px; padding-inline: 25px; font-size: 13px; }
-.immersive-site .button.gold, .registration-page .button.gold { color: #fff3e3; background-color: #ae153a; background-image: linear-gradient(115deg, #dc294a, #b5143c 48%, #802856); border-color: #ef89714d; }
-.immersive-site .button.gold:hover, .registration-page .button.gold:hover { box-shadow: 0 8px 28px #e52b4940; }
-.immersive-site .button.navy { color: #4a101d; background-color: #e8b85f; background-image: linear-gradient(115deg, #ffe7af, #e8b85f 48%, #f7d799); border-color: #ffdf9b; }
+.immersive-site .button.gold, .registration-page .button.gold { color: #fff; background-color: #1265d7; background-image: linear-gradient(115deg, #087fca, #164ed6 48%, #3933bc); border-color: #83e8ff80; }
+.immersive-site .button.gold:hover, .registration-page .button.gold:hover { box-shadow: 0 8px 28px #00bfff40; }
+.immersive-site .button.navy { color: #172756; background-color: #e8b85f; background-image: linear-gradient(115deg, #ffe7af, #e8b85f 48%, #f7d799); border-color: #ffdf9b; }
 .immersive-site .button.navy:hover { box-shadow: 0 8px 28px #e8b85f26; }
-.immersive-site .button.glass { background-image: linear-gradient(115deg, #f9c99a12, #d75e991c); border-color: #f5d1b866; }
+.immersive-site .button.glass { background-image: linear-gradient(115deg, #00d8ff12, #287bff24); border-color: #b5e5ff66; }
 
 /* A chronological thread links the event's five story moments. */
-.story-chapters { padding: 65px 0 80px; position: relative; }
+.story-chapters { padding: 65px 0 80px; position: relative; isolation: isolate; }
+.story-chapters::after { content: ''; position: absolute; z-index: -1; inset: -50px -8% auto; height: 560px; background: url('/images/impact-light-trails.svg') center top / 1600px auto no-repeat; opacity: .3; pointer-events: none; }
+.immersive-site .heritage-section { position: relative; isolation: isolate; }
+.immersive-site .heritage-section::after { content: ''; position: absolute; z-index: -1; inset: 0 -12% auto; height: 650px; background: url('/images/impact-light-trails.svg') center top / 1600px auto no-repeat; transform: scaleX(-1); opacity: .22; pointer-events: none; }
 .story-opening { max-width: 740px; margin: 0 auto 80px; text-align: center; }
 .story-opening > p:first-child { color: #e6bc8d; font-size: 13px; margin-bottom: 24px; }
 .story-opening > p:last-child { font-size: 15px; line-height: 1.9; color: var(--story-muted); max-width: 500px; margin: 25px auto 0; }
 .story-thread { position: relative; max-width: 1000px; margin: auto; }
-.story-thread::before { content: ''; position: absolute; left: 50%; top: 90px; bottom: 80px; width: 1px; background: linear-gradient(180deg, transparent, #e7b97780 10%, #85dbed80 50%, #ed718680 90%, transparent); }
+.story-thread::before { content: ''; position: absolute; left: 50%; top: 90px; bottom: 80px; width: 1px; background: linear-gradient(180deg, transparent, #e7b97780 10%, #85dbed80 50%, #597bff80 90%, transparent); }
 .story-chapter { display: grid; grid-template-columns: minmax(0, 1fr) 48px minmax(0, 1fr); align-items: center; min-height: 270px; position: relative; }
 .chapter-photographs { position: relative; height: 260px; grid-column: 1; grid-row: 1; }
 .chapter-diamond { position: absolute; width: 196px; height: 196px; transform: rotate(45deg); overflow: hidden; top: 25px; left: 50%; margin-left: -108px; }
@@ -125,7 +130,7 @@
 /* Wide transitions give the landscape room between the chapters. */
 .immersive-site .destination-section { min-height: 560px; margin: 70px 0; }
 .immersive-site .destination-section > img { object-position: center; }
-.immersive-site .destination-shade { background: linear-gradient(0deg, #690019, #6900194d 40%, #69001940 70%, #690019); }
+.immersive-site .destination-shade { background: linear-gradient(0deg, #050d55, #050d554d 40%, #050d5540 70%, #050d55); }
 .immersive-site .destination-content { text-align: center; max-width: 900px; padding: 90px 0; }
 .immersive-site .destination-content > p:not(.eyebrow) { margin-inline: auto; max-width: 500px; }
 .immersive-site .destination-caption { display: none; }
@@ -166,23 +171,23 @@
 .immersive-site .handbook-articles h3 { font-size: 25px; }
 .immersive-site .handbook-articles p { color: var(--story-muted); font-size: 14px; }
 .immersive-site .handbook-articles a, .immersive-site .handbook-articles button { color: #9acbea; border-color: #9acbea55; }
-.immersive-site .handbook-tag { background: transparent; color: #e7bc9a; padding: 0; }
+.immersive-site .handbook-tag { background: transparent; color: #9ddfff; padding: 0; }
 .immersive-site .coming-features { border: 0; border-top: 1px solid #a5bdd82a; border-radius: 0; padding: 26px 0 0; }
 .immersive-site .coming-features p { color: var(--story-muted); }
-.immersive-site .coming-features strong { color: #f5ded9; }
+.immersive-site .coming-features strong { color: #e2efff; }
 .immersive-site .faq-section { padding-top: 60px; }
 .immersive-site .faq-item > button { font-size: 15px; }
-.immersive-site .closing-section { padding: 110px 0; background: radial-gradient(ellipse at 50% 100%, #b7194766, transparent 70%), var(--story-base); }
+.immersive-site .closing-section { padding: 110px 0 300px; background: url('/images/impact-landscape.svg') center bottom / max(100%, 1300px) auto no-repeat, radial-gradient(ellipse at 50% 100%, #006bff66, transparent 70%), var(--story-base); }
 .immersive-site .closing-section::before, .immersive-site .closing-section::after { display: none; }
 .immersive-site .closing-section h2 { max-width: 850px; margin-inline: auto; font-size: clamp(38px, 5vw, 70px); }
-.immersive-site footer { background: #4b0012; border-top: 1px solid #e6bc8d26; }
+.immersive-site footer { background: #030a3d; border-top: 1px solid #e6bc8d26; }
 .immersive-site .faq-intro, .immersive-site .faq-item > p, .immersive-site .footer-top > p, .immersive-site .footer-bottom { color: var(--story-muted); }
 .immersive-site .footer-top { padding-block: 45px; }
-.immersive-site .assistant-fab { background: #6f142ae8; border-color: #f4cf8655; backdrop-filter: blur(12px); }
+.immersive-site .assistant-fab { background: #123a9be8; border-color: #8beaff80; backdrop-filter: blur(12px); }
 
 /* Registration keeps its separate route, with a quieter editorial frame. */
-.immersive-site .assistant-fab.chatbot-launcher { width: 62px; height: 62px; padding: 0; justify-content: center; border-radius: 50%; color: #fff; background: linear-gradient(135deg,#c62550,#6d2354); border: 1px solid #efb6cd80; box-shadow: 0 8px 28px #35041055; }
-.chatbot-ai-badge { position: absolute; right: -2px; bottom: -2px; border-radius: 10px; padding: 1px 5px; font-size: 9px; font-weight: 700; background: #fff; color: #690019; border: 1px solid #e5c6d0; }
+.immersive-site .assistant-fab.chatbot-launcher { width: 62px; height: 62px; padding: 0; justify-content: center; border-radius: 50%; color: #fff; background: linear-gradient(135deg,#087bcf,#1539bc); border: 1px solid #8beaff80; box-shadow: 0 8px 28px #00123e55; }
+.chatbot-ai-badge { position: absolute; right: -2px; bottom: -2px; border-radius: 10px; padding: 1px 5px; font-size: 9px; font-weight: 700; background: #fff; color: #050d55; border: 1px solid #e5c6d0; }
 .chat-markdown { line-height: 1.75; overflow-wrap: anywhere; }
 .chat-markdown p { white-space: normal; margin: 0 0 10px; }
 .chat-markdown p:last-child { margin-bottom: 0; }
@@ -191,48 +196,48 @@
 .chat-markdown ol { list-style: decimal; }
 .chat-markdown li { margin: 5px 0; }
 .chat-markdown strong { font-weight: 700; }
-.chat-markdown h1, .chat-markdown h2, .chat-markdown h3 { font: 600 14px/1.5 'Be Vietnam Pro',sans-serif; margin: 12px 0 8px; color: #690019; }
+.chat-markdown h1, .chat-markdown h2, .chat-markdown h3 { font: 600 14px/1.5 'Be Vietnam Pro',sans-serif; margin: 12px 0 8px; color: #050d55; }
 .chat-markdown a { color: #087da5; text-decoration: underline; }
 .chat-markdown pre { white-space: pre-wrap; }
 .chat-markdown table { border-collapse: collapse; width: 100%; font-size: 11px; }
 .chat-markdown th, .chat-markdown td { padding: 5px; border: 1px solid #dccdd3; }
 .chat-markdown blockquote { margin: 10px 0; padding-left: 10px; border-left: 2px solid #b96f8b; }
 .event-chatbot { display: flex; flex-direction: column; width: min(410px, calc(100vw - 30px)); height: min(620px, calc(100dvh - 110px)); max-height: calc(100dvh - 110px); background: #fff; color: #30202a; overflow: hidden; }
-.event-chatbot .assistant-header { background: #690019; color: white; flex-shrink: 0; }
+.event-chatbot .assistant-header { background: #050d55; color: white; flex-shrink: 0; }
 .chat-messages { flex: 1; min-height: 0; overflow-y: auto; padding: 18px; display: flex; flex-direction: column; gap: 14px; font-size: 13px; }
 .chat-welcome { color: #667b85; line-height: 1.8; }
-.chat-bubble { padding: 12px; border-radius: 10px; max-width: 94%; background: #f5f1f3; }
-.chat-bubble small { display: block; font-weight: 600; color: #84616d; font-size: 10px; margin-bottom: 5px; }
+.chat-bubble { padding: 12px; border-radius: 10px; max-width: 94%; background: #f0f5ff; }
+.chat-bubble small { display: block; font-weight: 600; color: #446b99; font-size: 10px; margin-bottom: 5px; }
 .chat-bubble p { white-space: pre-wrap; overflow-wrap: anywhere; line-height: 1.8; }
-.chat-user { align-self: flex-end; background: #f5e0e7; }
+.chat-user { align-self: flex-end; background: #e3eeff; }
 .chat-model { align-self: flex-start; }
-.chat-form { display: flex; align-items: flex-end; gap: 8px; padding: 12px; border-top: 1px solid #e7dde1; }
-.chat-form textarea { flex: 1; min-width: 0; resize: none; border: 1px solid #cdbfc5; border-radius: 5px; padding: 10px; font-size: 13px; }
+.chat-form { display: flex; align-items: flex-end; gap: 8px; padding: 12px; border-top: 1px solid #dbe6f5; }
+.chat-form textarea { flex: 1; min-width: 0; resize: none; border: 1px solid #c0d2eb; border-radius: 5px; padding: 10px; font-size: 13px; }
 .chat-form .button { min-height: 44px; padding: 10px 15px; }
 .chat-footer { display: grid; gap: 5px; padding: 0 14px 12px; font-size: 11px; }
-.chat-footer small { color: #786c72; font-size: 10px; }
+.chat-footer small { color: #5c7390; font-size: 10px; }
 .chat-footer a { color: #087da5; }
 .service-day-group { min-width: 0; margin: 26px 0; padding: 16px; border: 1px solid #dce1e3; border-radius: 6px; }
-.service-day-group > legend { padding: 0 8px; font-size: 17px; font-weight: 600; color: #690019; }
-.service-day-group .accommodation-night { margin-bottom: 0; background: #faf8f9; }
+.service-day-group > legend { padding: 0 8px; font-size: 17px; font-weight: 600; color: #050d55; }
+.service-day-group .accommodation-night { margin-bottom: 0; background: #f5f8ff; }
 @media (max-width: 760px) { .service-day-group { padding: 10px; } .service-day-group .accommodation-night { padding: 10px; } }
 .program-ticket-options { margin: 24px 0; padding: 18px; border: 1px solid #dce1e3; border-radius: 6px; min-width: 0; }
-.program-ticket-options legend { padding-inline: 8px; font-size: 16px; font-weight: 600; color: #690019; }
+.program-ticket-options legend { padding-inline: 8px; font-size: 16px; font-weight: 600; color: #050d55; }
 .program-ticket-options .cart-addon { padding: 16px 10px; border-radius: 4px; outline: 1px solid transparent; outline-offset: -1px; }
-.program-ticket-options .ticket-selected { background: #f5edf0; outline-color: #bd6680; }
+.program-ticket-options .ticket-selected { background: #eaf2ff; outline-color: #3875c4; }
 .footer-top > div { flex-wrap: wrap; }
 .admin-reminders { margin: 22px 0; }
 .admin-reminders > p, .admin-confirmation > p { font-size: 13px; margin: 12px 0; }
 .admin-confirmation { padding-block: 20px; }
 .admin-confirmation .consent { margin-bottom: 16px; }
 .admin-confirm-success { color: #176746; background: #edf8f1; padding: 14px; border-radius: 4px; font-size: 13px; }
-.admin-login { min-height: 100svh; display: grid; place-items: center; padding: 32px 20px; background: radial-gradient(ellipse at top, #a9133c, #4a0615); }
+.admin-login { min-height: 100svh; display: grid; place-items: center; padding: 32px 20px; background: radial-gradient(ellipse at top, #075de0, #050d55); }
 .admin-login-card { width: min(440px, 100%); background: #fff; color: #30202a; padding: 32px; border-radius: 10px; }
-.admin-login-card .brand.identity .brand-caption > strong { color: #690019; }
+.admin-login-card .brand.identity .brand-caption > strong { color: #050d55; }
 .admin-login-card h1 { font: 28px/1.4 'Lora', Georgia, serif; margin-top: 24px; }
 .admin-login-card > p { color: #667b85; font-size: 14px; margin: 10px 0 24px; }
 .admin-login-card form { display: grid; gap: 20px; }
-.admin-account { font-size: 12px; overflow-wrap: anywhere; color: #d6b5bb; }
+.admin-account { font-size: 12px; overflow-wrap: anywhere; color: #afc7e8; }
 .admin-export-note { font-size: 12px; margin: 12px 0 20px; color: #667b85; }
 .admin-pagination { display: flex; gap: 16px; align-items: center; justify-content: space-between; margin-top: 24px; font-size: 13px; }
 .admin-detail dl { display: block; }
@@ -240,11 +245,11 @@
 .admin-detail-row dd { margin: 0; overflow-wrap: anywhere; }
 @media (max-width: 760px) { .admin-account { display: none; } .admin-pagination { gap: 8px; font-size: 11px; } .admin-pagination .button { font-size: 11px; padding: 10px; } .admin-sidebar .button { font-size: 11px; padding: 8px; } }
 .accommodation-night { border: 1px solid #dce1e3; border-radius: 6px; margin: 20px 0; padding: 18px; min-width: 0; }
-.accommodation-night legend { padding: 0 8px; color: #690019; font-weight: 600; font-size: 15px; }
+.accommodation-night legend { padding: 0 8px; color: #050d55; font-weight: 600; font-size: 15px; }
 .accommodation-night > p { font-size: 12px; color: #667b85; margin-bottom: 14px; }
 .stay-none { display: flex; align-items: center; gap: 10px; font-size: 13px; padding-bottom: 12px; }
 .accommodation-night .cart-addon { padding: 16px 10px; border-radius: 4px; outline: 1px solid transparent; outline-offset: -1px; }
-.accommodation-night .cart-addon:has(input:checked) { background: #f5edf0; outline-color: #bd6680; }
+.accommodation-night .cart-addon:has(input:checked) { background: #eaf2ff; outline-color: #3875c4; }
 .schedule-warning { margin: 18px 0; padding: 12px 16px; border-left: 3px solid #d29a28; background: #fff6dc; color: #785411; font-size: 13px; }
 .field-attention { border-color: #d51f40 !important; box-shadow: 0 0 0 3px #d51f4026; animation: field-alert .4s ease 3; }
 @keyframes field-alert { 50% { box-shadow: 0 0 0 5px #d51f4060; } }
@@ -259,10 +264,10 @@
 @media (max-width: 1000px) {
   .live-payment-qr { grid-template-columns: 1fr; }
 }
-.registration-page { position: relative; isolation: isolate; background: #690019; }
-.registration-page::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, #690019ed, #690019f0), url('/images/trang-an.jpg') center top / cover fixed; }
+.registration-page { position: relative; isolation: isolate; background: #050d55; }
+.registration-page::before { content: ''; position: absolute; inset: 0; z-index: -1; background: url('/images/impact-light-trails.svg') left top / 1100px auto no-repeat, radial-gradient(ellipse at 0 40%, #075de04d, transparent 65%), linear-gradient(90deg, #050d55ed, #050d55f0), url('/images/trang-an.jpg') center top / cover fixed; pointer-events: none; }
 .registration-page-intro h1 { color: #f9dfac; }
-.registration-page-intro > p:last-child { color: #d6b5bb; }
+.registration-page-intro > p:last-child { color: #afc7e8; }
 .registration-page-main { display: grid; grid-template-columns: 310px minmax(0, 1fr); gap: 60px; max-width: 1240px; padding-top: 55px; align-items: start; }
 .registration-page-intro { position: sticky; top: 40px; padding: 25px 0; }
 .registration-page-intro h1 { font-size: 48px; line-height: 1.2; }
@@ -287,7 +292,7 @@
   .registration-page-intro h1 { font-size: 39px; }
 }
 @media (max-width: 1000px) {
-  .immersive-site .main-nav { background: #690019f5; top: 92px; }
+  .immersive-site .main-nav { background: #050d55f5; top: 92px; }
   .immersive-site .main-nav.is-open { gap: 25px; }
 }
 @media (max-width: 760px) {
@@ -346,7 +351,7 @@
   .immersive-site .heritage-section { padding-bottom: 70px; }
   .immersive-site .handbook-grid { gap: 35px; }
   .immersive-site .stay-card { min-height: 370px; }
-  .immersive-site .closing-section { padding: 70px 0; }
+  .immersive-site .closing-section { padding: 70px 0 230px; background-size: 1000px auto, auto, auto; }
   .registration-page-main { display: block; padding-top: 15px; }
   .registration-page-intro { position: static; padding: 20px 0 30px; }
   .registration-page-intro h1 { font-size: 36px; }
