@@ -97,3 +97,40 @@ Payment reminders
   POST /api/email-dispatch active so the rest of the queue is delivered and retried.
 - The queue count is not a delivered-email count. Inspect provider logs and sent_at.
 - No reminder emails have been sent during automated tests.
+Event AI chatbot (Google Gemini)
+1. Create an API key in Google AI Studio. Set GOOGLE_GEMINI_API_KEY in the server
+   .env/deployment environment. Keep GEMINI_MODEL=gemini-3.5-flash-lite by default.
+   No NEXT_PUBLIC_ key. Restart/redeploy after configuring.
+2. Run pnpm db:migrate to apply V5__chat_daily_quota.sql.
+3. Click Hoi NYC on the landing page. Supports VI/EN, text only, no personal booking
+   lookup, no search grounding/tools, no conversation storage in the application DB.
+   Google receives the public context and the submitted short conversation.
+4. Edit src/lib/chat-knowledge.ts for additional public event context (max 6000 chars).
+   Prices/services/schedule automatically come from event.ts, international.ts, agenda.ts.
+5. Limits: question 1200 chars, at most 7 messages sent (3 prior Q/A turns + question),
+   response 512 output tokens (including structured grounding evidence), minimal thinking, 20s provider timeout.
+   App-wide cap: 300 requests/day; per hashed IP: 30/day (Vietnam calendar day).
+   Quota reserves before Google call, so failed calls also count. If no trusted
+   x-forwarded-for exists, visitors share the unknown-IP quota. Global cap still applies
+   even if client IP headers are spoofed. Retain only hashed counters, up to 7 days.
+   Configure additional API restrictions/quotas on the Google project as appropriate.
+6. Test live answers with your configured key before opening the feature. Automated
+   tests/build do not call Gemini or consume tokens. No real migration was run here.
+7. Grounding is prompt-based over a small public context; it cannot guarantee every
+   generated answer is accurate. Missing details are directed to the COC phone number.
+   If you switch model IDs, verify the model supports thinkingLevel=minimal (3.x)
+   or thinkingBudget=0 (2.5). Google currently restricts new access to legacy 2.5 models.
+Sources: https://aistudio.google.com/docs/models/gemini-3.5-flash-lite
+https://aistudio.google.com/docs/models/gemini-2.5-flash-lite
+https://aistudio.google.com/docs/thinking
+Chat UI and grounding update
+- Markdown renders via react-markdown + GFM, skips raw HTML/images and restricts
+  clickable answer links to official NYC event/registration paths.
+- Frontend reveals answers gradually without extra model calls. It is a UI typing
+  effect, not network token streaming; reduced-motion preference shows text instantly.
+- Google returns structured status/answer/evidence. Unknown/out-of-scope answers,
+  invalid JSON, missing evidence or quotes absent from public FACTS use a fixed
+  fallback with COC contact and the official registration URL.
+- This reduces unsupported answers but cannot mathematically verify that every claim
+  is entailed by its cited quote. Keep context accurate and test representative questions.
+- Official site: https://nyc2027.jci.vn/ ; VI /dang-ky ; EN /en/dang-ky.

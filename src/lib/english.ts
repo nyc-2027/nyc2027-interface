@@ -36,7 +36,7 @@ export const english: Record<string, string> = {
   'Xem các đêm lưu trú': 'View accommodation packages', 'Luôn có người đồng hành': 'Support along the way',
   'Câu hỏi về đăng ký, dịch vụ hay lịch trình? Xem các giải đáp nhanh bên dưới. Kênh hỗ trợ chính thức sẽ được BTC cập nhật.': 'Questions about registration, services or the program? Find answers below. The COC will share official support channels.',
   'Xem câu hỏi thường gặp': 'Read the FAQ', 'Hành trình sẽ còn nhiều điều thú vị.': 'There is more to come.',
-  'Handbook đầy đủ, trợ lý AI và NYC Quest sẽ được bổ sung ở các giai đoạn tiếp theo.': 'The full handbook, AI assistant and NYC Quest will arrive in later releases.',
+  'Handbook đầy đủ và NYC Quest sẽ được bổ sung ở các giai đoạn tiếp theo.': 'The full handbook and NYC Quest will arrive in later releases.',
   'SẮP RA MẮT': 'COMING SOON', 'BẠN HỎI, NYC GIẢI ĐÁP': 'YOUR QUESTIONS, ANSWERED',
   'Mọi điều bạn': 'Everything you', 'cần biết.': 'need to know.',
   'Một chút chuẩn bị để sẵn sàng': 'A little preparation', 'cho một hành trình thật trọn vẹn.': 'for a journey to remember.',
