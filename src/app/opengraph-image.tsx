@@ -12,9 +12,9 @@ export default async function OpenGraphImage() {
   const title = await readFile(join(process.cwd(), 'public/images/Text_NYC.png'));
 
   return new ImageResponse(
-    <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '60px', background: '#690019', color: '#fff' }}>
+    <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '60px', background: '#050d55', color: '#fff' }}>
       <img src={`data:image/jpeg;base64,${landscape.toString('base64')}`} width={1200} height={630} style={{ position: 'absolute', inset: 0, objectFit: 'cover' }} />
-      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(50,0,15,0.15), rgba(70,0,20,0.95))' }} />
+      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(5,13,85,0.15), rgba(5,13,85,0.95))' }} />
       <div style={{ display: 'flex', flexDirection: 'column', position: 'relative' }}>
         <div style={{ fontSize: 30, marginBottom: 28 }}>2027 JCI VIETNAM</div>
         <img src={`data:image/png;base64,${title.toString('base64')}`} width={1080} height={108} />
