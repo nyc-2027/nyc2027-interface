@@ -181,6 +181,15 @@
 .immersive-site .assistant-fab { background: #6f142ae8; border-color: #f4cf8655; backdrop-filter: blur(12px); }
 
 /* Registration keeps its separate route, with a quieter editorial frame. */
+.service-day-group { min-width: 0; margin: 26px 0; padding: 16px; border: 1px solid #dce1e3; border-radius: 6px; }
+.service-day-group > legend { padding: 0 8px; font-size: 17px; font-weight: 600; color: #690019; }
+.service-day-group .accommodation-night { margin-bottom: 0; background: #faf8f9; }
+@media (max-width: 760px) { .service-day-group { padding: 10px; } .service-day-group .accommodation-night { padding: 10px; } }
+.program-ticket-options { margin: 24px 0; padding: 18px; border: 1px solid #dce1e3; border-radius: 6px; min-width: 0; }
+.program-ticket-options legend { padding-inline: 8px; font-size: 16px; font-weight: 600; color: #690019; }
+.program-ticket-options .cart-addon { padding: 16px 10px; border-radius: 4px; outline: 1px solid transparent; outline-offset: -1px; }
+.program-ticket-options .ticket-selected { background: #f5edf0; outline-color: #bd6680; }
+.footer-top > div { flex-wrap: wrap; }
 .admin-reminders { margin: 22px 0; }
 .admin-reminders > p, .admin-confirmation > p { font-size: 13px; margin: 12px 0; }
 .admin-confirmation { padding-block: 20px; }

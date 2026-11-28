@@ -1,5 +1,5 @@
 import { createHash, randomBytes } from 'node:crypto';
-import { addons, calculateTotal, currentTier, servicesForMode, type Order } from './event';
+import { addons, calculateTotal, currentTier, servicesForMode, type Order, type ProgramTicket } from './event';
 import { internationalPackages } from './international';
 import { jciChapters } from './chapters';
 
@@ -29,6 +29,8 @@ export function buildRegistration(input: Record<string, unknown>) {
   const international = input.currency === 'USD';
   const pack = internationalPackages.find(p => p.id === input.internationalPackageId);
   if (international && !pack) throw new Error('Invalid package');
+  const programTicket = input.programTicket ?? 'combo';
+  if (!['combo', 'culture', 'gala'].includes(String(programTicket))) throw new Error('Invalid program ticket');
   if (international && input.addons.some(id => id !== 'golf')) throw new Error('Invalid international add-on');
   const quantity = !international && travelMode === 'group' ? input.quantity ?? 1 : 1;
   if (typeof quantity !== 'number' || !Number.isInteger(quantity) || quantity < 1 || quantity > 1000) throw new Error('Invalid ticket quantity');
@@ -42,8 +44,8 @@ export function buildRegistration(input: Record<string, unknown>) {
   const rate = Number(process.env.USD_VND_RATE || 26000);
   if (!Number.isFinite(rate) || rate <= 0) throw new Error('Invalid exchange rate');
   const golfVnd = international && selected.includes('golf') ? addons.find(a => a.id === 'golf')!.price : 0;
-  const total = international ? Math.round((pack!.price + golfVnd / rate) * 100) / 100 : calculateTotal(tier, member, selected, quantity);
-  const order: Order = { handicap, quantity, id: `NYC27-${randomBytes(8).toString('hex').toUpperCase()}`, name: text('name', 120, true), email, phone: text('phone', 30, true), chapter, country, note: text('note', 1000), member, tier, travelMode, addons: selected, total, currency: international ? 'USD' : 'VND', ...(international ? { internationalPackageId: pack!.id } : {}), status: 'pending', createdAt: new Date().toISOString() };
+  const total = international ? Math.round((pack!.price + golfVnd / rate) * 100) / 100 : calculateTotal(tier, member, selected, quantity, programTicket as ProgramTicket);
+  const order: Order = { programTicket: international ? undefined : programTicket as ProgramTicket, handicap, quantity, id: `NYC27-${randomBytes(8).toString('hex').toUpperCase()}`, name: text('name', 120, true), email, phone: text('phone', 30, true), chapter, country, note: text('note', 1000), member, tier, travelMode, addons: selected, total, currency: international ? 'USD' : 'VND', ...(international ? { internationalPackageId: pack!.id } : {}), status: 'pending', createdAt: new Date().toISOString() };
   const amount = international ? Math.round(pack!.price * rate) + golfVnd : total;
   // Keep the reference short, ASCII-only, and unique even for identical names.
   const code = order.id.replace('NYC27-', '');

@@ -1,8 +1,23 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { buildRegistration } from '../src/lib/registration-server';
-import { calculateTotal, currentTier } from '../src/lib/event';
+import { calculateTotal, currentTier, programPrice } from '../src/lib/event';
 const details = { name: 'Test Delegate', email: 'delegate@example.com', phone: '0901234567', member: 'member', chapter: 'JCI Hà Nội', travelMode: 'individual', addons: [], total: 1, status: 'confirmed', id: 'forged' };
+test('single-night ticket prices match both tiers and attendee categories', () => {
+  assert.equal(programPrice('priority', 'member', 'culture'), 1000000);
+  assert.equal(programPrice('priority', 'non-member', 'culture'), 1050000);
+  assert.equal(programPrice('priority', 'member', 'gala'), 1150000);
+  assert.equal(programPrice('priority', 'non-member', 'gala'), 1200000);
+  assert.equal(programPrice('impactor', 'member', 'culture'), 1100000);
+  assert.equal(programPrice('impactor', 'non-member', 'culture'), 1150000);
+  assert.equal(programPrice('impactor', 'member', 'gala'), 1300000);
+  assert.equal(programPrice('impactor', 'non-member', 'gala'), 1350000);
+  const { order, payment } = buildRegistration({ ...details, programTicket: 'culture', travelMode: 'group', quantity: 4, addons: ['bus'] });
+  assert.equal(order.programTicket, 'culture');
+  assert.equal(order.total, (programPrice(currentTier(), 'member', 'culture') + 500000) * 4);
+  assert.equal(payment.amount, order.total);
+  assert.throws(() => buildRegistration({ ...details, programTicket: 'unknown' }));
+});
 test('server replaces client price, id and payment status', () => {
   const { order, payment } = buildRegistration(details);
   assert.equal(order.total, calculateTotal(currentTier(), 'member', []));

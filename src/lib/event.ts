@@ -2,39 +2,49 @@ export const money = (value: number) => new Intl.NumberFormat('vi-VN', { style: 
 export type MemberType = 'member' | 'non-member';
 export type Tier = 'priority' | 'impactor';
 export type TravelMode = 'group' | 'individual';
+export type ProgramTicket = 'combo' | 'culture' | 'gala';
+export const programTicketNames = { combo: 'Combo Culture Night + Gala Night', culture: 'Culture Night · 15/01', gala: 'Gala Night · 16/01' };
+export function programPrice(tier: Tier, member: MemberType, ticket: ProgramTicket = 'combo') {
+  if (ticket === 'combo') return comboPrice(tier, member);
+  return (ticket === 'culture' ? (tier === 'priority' ? 1000000 : 1100000) : (tier === 'priority' ? 1150000 : 1300000)) + (member === 'non-member' ? 50000 : 0);
+}
+export function programTicketLabel(order: Pick<Order, 'programTicket' | 'internationalPackageId' | 'tier'>) {
+  return order.internationalPackageId ? `${order.internationalPackageId === 'delegate' ? 'Delegate' : 'Experience'} Package` : `${programTicketNames[order.programTicket || 'combo']} · ${order.tier === 'priority' ? 'Priority Impactor' : 'Impactor'}`;
+}
 export function servicesForMode(mode: TravelMode, selected: string[]) {
   const allowed = addonsForMode(mode).map(a => a.id);
   return [...new Set(selected.filter(id => allowed.includes(id)))];
 }
-export type Addon = { id: string; name: string; detail: string; price: number; category: 'transport' | 'stay' | 'experience' };
+export type Addon = { id: string; name: string; detail: string; price: number; category: 'transport' | 'stay' | 'experience'; day?: '15' | '16' | '17' };
 export const addons: Addon[] = [
   { id: 'bus', name: 'Xe khứ hồi', detail: 'Hà Nội – Ninh Bình – Hà Nội', price: 500000, category: 'transport' },
-  { id: 'stay15', name: 'Wyndham · Đêm 15/01', detail: '820.000đ/người · Phòng 2 người · Bao gồm ăn sáng', price: 820000, category: 'stay' },
-  { id: 'stay16', name: 'Wyndham · Đêm 16/01', detail: '920.000đ/người · Phòng 2 người · Bao gồm ăn sáng', price: 920000, category: 'stay' },
-  { id: 'villa15', name: 'Villa · Đêm 15/01', detail: '7.200.000đ/căn · 8 người', price: 7200000, category: 'stay' },
-  { id: 'villa16', name: 'Villa · Đêm 16/01', detail: '8.200.000đ/căn · 8 người', price: 8200000, category: 'stay' },
-  { id: 'tour15', name: 'Tour · Chiều 15/01', detail: 'Một hành trình nửa ngày khám phá Ninh Bình', price: 700000, category: 'experience' },
-  { id: 'tour16', name: 'Tour · Chiều 16/01', detail: 'Một hành trình nửa ngày khám phá Ninh Bình', price: 700000, category: 'experience' },
-  { id: 'tour17', name: 'Tour · Sáng 17/01', detail: 'Một hành trình nửa ngày khám phá Ninh Bình', price: 700000, category: 'experience' },
+  { id: 'stay15', day: '15', name: 'Wyndham · Đêm 15/01', detail: '820.000đ/người · Phòng 2 người · Bao gồm ăn sáng', price: 820000, category: 'stay' },
+  { id: 'stay16', day: '16', name: 'Wyndham · Đêm 16/01', detail: '920.000đ/người · Phòng 2 người · Bao gồm ăn sáng', price: 920000, category: 'stay' },
+  { id: 'villa15', day: '15', name: 'Villa · Đêm 15/01', detail: '7.200.000đ/căn · 8 người', price: 7200000, category: 'stay' },
+  { id: 'villa16', day: '16', name: 'Villa · Đêm 16/01', detail: '8.200.000đ/căn · 8 người', price: 8200000, category: 'stay' },
+  { id: 'tour15', day: '15', name: 'Tour · Chiều 15/01', detail: 'Một hành trình nửa ngày khám phá Ninh Bình', price: 700000, category: 'experience' },
+  { id: 'tour16', day: '16', name: 'Tour · Chiều 16/01', detail: 'Một hành trình nửa ngày khám phá Ninh Bình', price: 700000, category: 'experience' },
+  { id: 'tour17', day: '17', name: 'Tour · Sáng 17/01', detail: 'Một hành trình nửa ngày khám phá Ninh Bình', price: 700000, category: 'experience' },
   { id: 'mineral', name: 'Tắm khoáng nóng', detail: '150.000đ/người', price: 150000, category: 'experience' },
-  { id: 'pickleball', name: 'Impactor Pickleball Cup', detail: 'Sáng 17/01 · 500.000đ/người', price: 500000, category: 'experience' },
-  { id: 'ga01', name: 'JCI Vietnam General Assembly 01', detail: 'Chiều 15/01 · Miễn phí', price: 0, category: 'experience' },
-  { id: 'thanglong', name: 'Inauguration Ceremony JCI Thanglong', detail: 'Sáng 16/01 · Miễn phí', price: 0, category: 'experience' },
-  { id: 'awards', name: 'JCI Vietnam Awards', detail: 'Chiều 16/01 · Miễn phí', price: 0, category: 'experience' },
-  { id: 'golf', name: 'Impactor Golf Cup', detail: 'Giải Golf Quốc tế NYC 2027 · 07:00 ngày 16/01', price: 3000000, category: 'experience' },
+  { id: 'pickleball', day: '17', name: 'Impactor Pickleball Cup', detail: 'Sáng 17/01 · 500.000đ/người', price: 500000, category: 'experience' },
+  { id: 'ga01', day: '15', name: 'JCI Vietnam General Assembly 01', detail: 'Chiều 15/01 · Miễn phí', price: 0, category: 'experience' },
+  { id: 'thanglong', day: '16', name: 'Inauguration Ceremony JCI Thanglong', detail: 'Sáng 16/01 · Miễn phí', price: 0, category: 'experience' },
+  { id: 'awards', day: '16', name: 'JCI Vietnam Awards', detail: 'Chiều 16/01 · Miễn phí', price: 0, category: 'experience' },
+  { id: 'golf', day: '15', name: 'Impactor Golf Cup', detail: 'Giải Golf Quốc tế NYC 2027 · Chiều 15/01', price: 3000000, category: 'experience' },
 ];
 export function addonsForMode(mode: TravelMode) { return addons.filter(a => mode === 'group' || !['villa15', 'villa16'].includes(a.id)); }
 export function serviceQuantity(id: string, quantity: number) { return id.startsWith('villa') ? Math.ceil(quantity / 8) : quantity; }
 export function comboPrice(tier: Tier, member: MemberType) {
   return (tier === 'priority' ? 1950000 : 2200000) + (member === 'non-member' ? 100000 : 0);
 }
-export function calculateTotal(tier: Tier, member: MemberType, selected: string[], quantity = 1) {
-  return comboPrice(tier, member) * quantity + addons.filter(a => selected.includes(a.id)).reduce((sum, a) => sum + a.price * serviceQuantity(a.id, quantity), 0);
+export function calculateTotal(tier: Tier, member: MemberType, selected: string[], quantity = 1, ticket: ProgramTicket = 'combo') {
+  return programPrice(tier, member, ticket) * quantity + addons.filter(a => selected.includes(a.id)).reduce((sum, a) => sum + a.price * serviceQuantity(a.id, quantity), 0);
 }
 export function currentTier(date = new Date()): Tier {
-  return date.getTime() < Date.parse('2026-12-13T00:00:00+07:00') ? 'priority' : 'impactor';
+  return date.getTime() < Date.parse('2026-12-21T00:00:00+07:00') ? 'priority' : 'impactor';
 }
 export type Order = {
+  programTicket?: ProgramTicket;
   handicap?: string;
   quantity?: number;
   currency?: 'VND' | 'USD';

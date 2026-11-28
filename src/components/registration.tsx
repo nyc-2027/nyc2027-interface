@@ -1,10 +1,10 @@
 'use client';
-import { useEffect, useState, type FormEvent } from 'react';
+import { Fragment, useEffect, useState, type FormEvent } from 'react';
 import TravelModeSelector from './travel-mode-selector';
 import Payment from './payment';
 import { register, restoreBooking, type Booking } from '@/lib/registration-client';
 import { jciChapters } from '@/lib/chapters';
-import { addonsForMode, serviceQuantity, calculateTotal, comboPrice, currentTier, servicesForMode, money, type Addon, type MemberType, type Order, type Tier, type TravelMode } from '@/lib/event';
+import { addonsForMode, serviceQuantity, calculateTotal, programPrice, programTicketNames, currentTier, servicesForMode, money, type ProgramTicket, type Addon, type MemberType, type Order, type Tier, type TravelMode } from '@/lib/event';
 import { Check, ShieldCheck, ShoppingBag } from './icon';
 type Guest = { name: string; phone: string; handicap: string };
 const emptyGuest = (): Guest => ({ name: '', phone: '', handicap: '' });
@@ -23,13 +23,14 @@ export default function Registration() {
   const quantity = travelMode === 'group' ? ticketCount : 1;
   const [choices, setChoices] = useState<string[]>([]);
   const selected = servicesForMode(travelMode, choices);
+  const [programTicket, setProgramTicket] = useState<ProgramTicket>('combo');
   const [tier, setTier] = useState<Tier>('priority');
   const [step, setStep] = useState(0);
   const [booking, setBooking] = useState<Booking | null>(null);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
   const [representative, setRepresentative] = useState({ ...emptyGuest(), email: '', chapter: '', note: '' });
-  const total = calculateTotal(tier, member, selected, quantity);
+  const total = calculateTotal(tier, member, selected, quantity, programTicket);
   const golf = selected.includes('golf');
   useEffect(() => { setTier(currentTier()); const saved = restoreBooking(false); if (saved) { setBooking(saved); setStep(2); } }, []);
   function toggle(id: string) {
@@ -51,7 +52,7 @@ export default function Registration() {
   }
   async function submit(event: FormEvent<HTMLFormElement>) {
     if (!validate(event) || busy) return;
-    const order: Order = { id: '', ...representative, chapter: member === 'member' ? memberChapter : representative.chapter, quantity, handicap: golf ? representative.handicap : undefined, travelMode, member, tier, addons: selected, total, status: 'pending', createdAt: '' };
+    const order: Order = { id: '', programTicket, ...representative, chapter: member === 'member' ? memberChapter : representative.chapter, quantity, handicap: golf ? representative.handicap : undefined, travelMode, member, tier, addons: selected, total, status: 'pending', createdAt: '' };
     setBusy(true);
     try { const saved = await register(order); setBooking(saved); setStep(2); }
     catch { setError('Chưa lưu được đăng ký. Vui lòng kiểm tra thông tin và thử lại.'); }
@@ -67,13 +68,17 @@ export default function Registration() {
     {step === 0 && <form className="registration-content" noValidate onSubmit={next}>
       <TravelModeSelector value={travelMode} onChange={mode => { setTravelMode(mode); setError(''); }} />
       {travelMode === 'group' && <label className="field">Số vé cho cả đoàn *<input id="ticket-count" type="number" min={1} max={1000} step={1} required value={ticketCount || ''} onChange={e => setTicketCount(Number(e.target.value))} /><small>Khách sạn tính theo người. Villa chỉ dành cho đoàn từ 8 người, tối đa 8 người/căn.</small></label>}
-      <div className="cart-combo"><div><span className="eyebrow blue">COMBO CHƯƠNG TRÌNH</span><h3>{tier === 'priority' ? 'Priority ' : ''}Impactor</h3><p>Welcome Night + Gala Night + Quà tặng</p></div><strong>{money(comboPrice(tier, member) * quantity)}</strong></div>
       <label className="field">Đối tượng tham dự<select value={member} onChange={e => setMember(e.target.value as MemberType)}><option value="member">JCI Member</option><option value="non-member">Non-member</option></select></label>
       {member === 'member' && <label className="field mt-4">Chapter JCI *<select id="jci-chapter" required value={memberChapter} onChange={e => setMemberChapter(e.target.value)}><option value="">Chọn Chapter JCI của bạn</option>{jciChapters.map(chapter => <option key={chapter}>{chapter}</option>)}</select></label>}
       <h3 className="cart-section-title">Tự chọn dịch vụ đi cùng</h3>
-      <div className="accommodation-options">{['15', '16'].map(night => <fieldset className="accommodation-night" key={night}><legend>Lưu trú đêm {night}/01</legend><p>Chọn một loại lưu trú cho đêm này.</p><label className="stay-none"><input type="radio" name={`stay-${night}`} checked={!selected.includes(`stay${night}`) && !selected.includes(`villa${night}`)} onChange={() => chooseStay(night, '')} /> Không đăng ký lưu trú</label>{addonsForMode(travelMode).filter(item => item.id === `stay${night}` || item.id === `villa${night}`).map(item => addonRow(item, night))}</fieldset>)}</div>
-      <h3 className="cart-section-title">Di chuyển & trải nghiệm</h3><div className="cart-addon-list">{addonsForMode(travelMode).filter(item => item.category !== 'stay').map(item => addonRow(item))}</div>
-      {golf && selected.includes('thanglong') && <p className="schedule-warning" role="status">Golf và Inauguration Ceremony JCI Thanglong cùng diễn ra sáng 16/01. Vui lòng cân nhắc lịch tham dự; bạn vẫn có thể giữ cả hai lựa chọn cho đoàn.</p>}
+      <fieldset className="service-day-group"><legend>Dịch vụ không gắn ngày</legend><div className="cart-addon-list">{addonsForMode(travelMode).filter(item => !item.day).map(item => addonRow(item))}</div></fieldset>
+      {(['15', '16', '17'] as const).map(day => <Fragment key={day}><fieldset className="service-day-group"><legend>Ngày {day}/01/2027</legend>
+        <div className="cart-addon-list">{addonsForMode(travelMode).filter(item => item.day === day && item.category !== 'stay').map(item => addonRow(item))}</div>
+        {day === '15' && golf && selected.includes('ga01') && <p className="schedule-warning" role="status">Golf và JCI Vietnam General Assembly 01 cùng diễn ra chiều 15/01. Vui lòng cân nhắc lịch tham dự; bạn vẫn có thể giữ cả hai lựa chọn cho đoàn.</p>}
+        {day !== '17' && <fieldset className="accommodation-night"><legend>Lưu trú đêm {day}/01</legend><p>Chọn một loại lưu trú cho đêm này.</p><label className="stay-none"><input type="radio" name={`stay-${day}`} checked={!selected.includes(`stay${day}`) && !selected.includes(`villa${day}`)} onChange={() => chooseStay(day, '')} /> Không đăng ký lưu trú</label>{addonsForMode(travelMode).filter(item => item.day === day && item.category === 'stay').map(item => addonRow(item, day))}</fieldset>}
+      </fieldset>
+      {day === '16' && (<fieldset className="program-ticket-options"><legend>Vé tham dự chương trình</legend>{(['combo', 'culture', 'gala'] as ProgramTicket[]).map(ticket => <label className={`cart-addon ${programTicket === ticket ? 'ticket-selected' : ''}`} key={ticket}><input type="radio" name="program-ticket" value={ticket} checked={programTicket === ticket} onChange={() => setProgramTicket(ticket)} /><span>{programTicketNames[ticket]}<small>{ticket === 'combo' ? 'Hai đêm chương trình + tiệc tối mỗi đêm + quà tặng' : 'Chương trình và tiệc tối của đêm tương ứng'}</small></span><strong className="addon-price">{quantity > 1 && <small className="addon-calculation">{money(programPrice(tier, member, ticket))} × {quantity} người =</small>}{money(programPrice(tier, member, ticket) * quantity)}</strong></label>)}<p className="showcase-note">Priority Impactor đến hết 20/12/2026; Impactor từ 21/12/2026. Không bao gồm ăn sáng, ăn trưa, phòng/villa, di chuyển, tour, golf và dịch vụ mua thêm.</p></fieldset>)}
+      </Fragment>)}
       <div className="cart-total"><span>Tổng cộng <small>{quantity} người tham dự</small></span><strong>{money(total)}</strong></div>
       {error && <p className="form-error" role="alert">{error}</p>}<button className="button navy full" type="submit">Tiếp tục · Thông tin tham dự</button>
     </form>}
@@ -88,7 +93,7 @@ export default function Registration() {
         <label className="field full-field">Ghi chú cho Ban tổ chức<textarea rows={3} maxLength={1000} value={representative.note} onChange={e => repField('note', e.target.value)} /></label>
       </div>
       <label className="consent"><input type="checkbox" required />Tôi đồng ý để BTC lưu thông tin đăng ký của tôi và các thành viên đã đồng ý ủy quyền nhằm tổ chức sự kiện và đối soát thanh toán.</label>
-      <div className="order-mini-summary"><ShoppingBag size={21} /><span>{quantity} vé · {selected.length} dịch vụ</span><strong>{money(total)}</strong></div>
+      <div className="order-mini-summary"><ShoppingBag size={21} /><span>{quantity} vé · {programTicketNames[programTicket]} · {selected.length} dịch vụ</span><strong>{money(total)}</strong></div>
       {error && <p className="form-error" role="alert">{error}</p>}<button className="button navy full" type="submit" disabled={busy}>{busy ? 'Đang tạo đăng ký…' : 'Xác nhận đăng ký & thanh toán'}</button>
       <button className="back-link" type="button" onClick={() => { setStep(0); setError(''); }}>Quay lại chỉnh sửa lựa chọn</button>
     </form>}

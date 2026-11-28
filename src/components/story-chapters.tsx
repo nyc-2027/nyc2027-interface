@@ -7,9 +7,9 @@ export default function StoryChapters() {
   const { locale } = useLocale();
   const chapters = [
     { session: program[0].sessions[0], day: '15.01', photo: 'warriors-BaE__94o.webp', detail: 'trang-an.jpg' },
-    { session: program[0].sessions[1], day: '15.01', photo: 'tre-BGLebB0k.webp', detail: 'tam-coc.jpg' },
-    { session: program[1].sessions[2], day: '16.01', photo: 'times-97XoNChy.webp', detail: 'bai-dinh.jpg' },
-    { session: program[1].sessions[3], day: '16.01', photo: 'hotel-FrC3zrvc.webp', detail: 'hoa-lu.jpg' },
+    { session: program[0].sessions[2], day: '15.01', photo: 'tre-BGLebB0k.webp', detail: 'tam-coc.jpg' },
+    { session: program[1].sessions[1], day: '16.01', photo: 'times-97XoNChy.webp', detail: 'bai-dinh.jpg' },
+    { session: program[1].sessions[2], day: '16.01', photo: 'hotel-FrC3zrvc.webp', detail: 'hoa-lu.jpg' },
     { session: program[2].sessions[1], day: '17.01', photo: 'hang-mua.jpg', detail: 'cuc-phuong.jpg' },
   ];
 

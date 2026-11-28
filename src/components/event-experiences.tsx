@@ -28,7 +28,7 @@ export default function EventExperiences() {
           <h2>{t("Giữa đồi xanh Tràng An,")}<br /><em>{t("kết nối qua từng cú đánh.")}</em></h2>
           <p>{t("Gặp gỡ những người bạn đồng hành trên sân golf, giữa hồ nước và những dải đồi xanh của Ninh Bình.")}</p>
           <div className="experience-meta">
-            <span><CalendarDays size={17} />{t("07:00 · 16/01/2027 · Dự kiến")}</span>
+            <span><CalendarDays size={17} />{locale === 'en' ? 'Afternoon · 15/01/2027' : 'Chiều · 15/01/2027'}</span>
             <span><MapPin size={17} />{t("Tràng An Golf & Resort")}</span>
           </div>
         </div>

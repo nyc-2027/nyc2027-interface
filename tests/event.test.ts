@@ -16,9 +16,9 @@ test('total includes each selected service once and ignores unknown service IDs'
   assert.equal(calculateTotal('priority', 'non-member', ['bus', 'bus', 'unknown']), 2550000);
   assert.equal(calculateTotal('impactor', 'member', addons.map(a => a.id)), 25590000);
 });
-test('Priority ends at midnight Vietnam time after December 12', () => {
-  assert.equal(currentTier(new Date('2026-12-12T23:59:59+07:00')), 'priority');
-  assert.equal(currentTier(new Date('2026-12-13T00:00:00+07:00')), 'impactor');
+test('Priority ends at midnight Vietnam time after December 20', () => {
+  assert.equal(currentTier(new Date('2026-12-20T23:59:59+07:00')), 'priority');
+  assert.equal(currentTier(new Date('2026-12-21T00:00:00+07:00')), 'impactor');
 });
 test('accommodation visibility follows travel mode and free events do not add fees', () => {
   assert.ok(!addonsForMode('individual').some(a => a.id.startsWith('villa')));
@@ -50,9 +50,9 @@ test('confirmed revenue keeps USD and legacy VND orders in their own currencies'
 
 test('program follows the eight sessions and times supplied in Agenda.md', () => {
   assert.deepEqual(program.map(day => day.sessions.map(session => session.time)), [
-    ['14:00', '19:00'], ['07:00', '08:30', '13:00', '19:00'], ['07:30', '08:00'],
+    ['14:00', 'PM', '19:00'], ['08:30', '13:00', '19:00'], ['07:30', '08:00'],
   ]);
-  assert.equal(program[1].sessions[0].module, true);
+  assert.equal(program[0].sessions[1].module, true);
   assert.equal(program[2].sessions[1].module, true);
   assert.equal(program.flatMap(day => day.sessions).every(session => session.name.vi && session.name.en && session.description.vi && session.description.en), true);
 });

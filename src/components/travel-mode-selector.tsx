@@ -18,7 +18,7 @@ export default function TravelModeSelector({ value, onChange }: Props) {
           <input type="radio" name="travel-mode" value="individual" checked={value === 'individual'} onChange={() => onChange('individual')} />
           <Compass size={24} aria-hidden="true" />
           <strong>Đi cá nhân</strong>
-          <span>Combo chương trình, tự chọn đêm lưu trú, di chuyển và các trải nghiệm theo nhu cầu.</span>
+          <span>Chọn combo hoặc vé lẻ từng đêm, tự chọn lưu trú, di chuyển và trải nghiệm theo nhu cầu.</span>
         </label>
       </div>
       <p>Cả hai hình thức đều tự chọn dịch vụ. Khách sạn tính theo người; villa dành cho đoàn tối thiểu 8 người, làm tròn số căn mỗi 8 người.</p>
