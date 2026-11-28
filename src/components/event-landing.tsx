@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { BotMessageSquare } from 'lucide-react';
+import { BotMessageSquare } from './icon';
 import { LanguageSwitcher, LocalizedLink as Link, useLocale } from './locale-provider';
 import EventAgenda from './event-agenda';
 import { BusFront, CalendarDays, ChevronDown, Compass, Hotel, MapPin, Menu, MessageCircle, Plus, Sparkles, Ticket, X } from './icon';
@@ -10,6 +10,7 @@ import HeroPartners from './hero-partners';
 import Brand from './brand';
 import HeroCountdown from './hero-countdown';
 import ScrollReveal from './scroll-reveal';
+import AmbientLights from './ambient-lights';
 import EventChatbot from './event-chatbot';
 import StoryChapters from './story-chapters';
 import EventExperiences from './event-experiences';
@@ -28,7 +29,7 @@ export default function EventLanding() {
   const [faq, setFaq] = useState<number | null>(0);
   const [assistant, setAssistant] = useState(false);
 
-  return <div className="immersive-site">
+  return <div className="immersive-site"><AmbientLights />
     <header className="site-header">
       <Brand href="#top" variant="lfi" />
       <nav className={menu ? 'main-nav is-open' : 'main-nav'} aria-label={t("Điều hướng chính")}>

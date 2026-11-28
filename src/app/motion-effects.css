@@ -1,0 +1,42 @@
+/* Slow movement at the edges leaves the event content in the foreground. */
+.immersive-site { position: relative; isolation: isolate; }
+.ambient-lights { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: -1; contain: paint; }
+.ambient-spark { position: absolute; width: var(--spark-size); height: var(--spark-size); border-radius: 50%; background: #efffff; box-shadow: 0 0 10px #a7f5ff, 0 0 24px #00d8ff66; animation: ambient-drift var(--spark-duration) ease-in-out var(--spark-delay) infinite; }
+.ambient-star::before, .ambient-star::after { content: ''; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); background: linear-gradient(transparent,#c4f7ff,transparent); width: 1px; height: 44px; }
+.ambient-star::after { transform: translate(-50%,-50%) rotate(90deg); height: 30px; }
+.ambient-dust:nth-child(3n) { background: #ffe5a6; box-shadow: 0 0 12px #ffd36b66; }
+@keyframes ambient-drift { 0%,100% { opacity: .12; transform: translate3d(0,0,0) scale(.65); } 50% { opacity: .65; transform: translate3d(var(--spark-drift-x),var(--spark-drift-y),0) scale(1); } }
+.ambient-orb { position: absolute; width: min(900px, 85vw); height: 560px; border-radius: 50%; background: radial-gradient(ellipse,#0a73f62e,transparent 68%); animation: aurora-drift 32s ease-in-out infinite alternate; }
+.orb-0 { top: 8%; left: -30%; }
+.orb-1 { top: 34%; right: -28%; background: radial-gradient(ellipse,#00d8ff1f,transparent 68%); animation-delay: -17s; }
+.orb-2 { top: 58%; left: -25%; animation-delay: -8s; }
+.orb-3 { top: 82%; right: -20%; background: radial-gradient(ellipse,#3569ff33,transparent 68%); animation-delay: -23s; }
+@keyframes aurora-drift { from { opacity: .45; transform: translate3d(-25px,0,0) scale(.9); } to { opacity: .9; transform: translate3d(35px,45px,0) scale(1.06); } }
+.story-chapters::after, .immersive-site .heritage-section::after { animation: light-trail-flow 24s ease-in-out infinite alternate; }
+@keyframes light-trail-flow { from { translate: -24px 0; opacity: .16; } to { translate: 24px 18px; opacity: .36; } }
+.immersive-site .hero-countdown .countdown-number { overflow: hidden; }
+.immersive-site .hero-countdown .countdown-number::before { content: ''; position: absolute; inset: 0 auto 0 -75%; width: 60%; background: linear-gradient(110deg,transparent,#b9f5ff25,transparent); transform: skewX(-20deg); animation: countdown-sheen 16s ease-in-out infinite; pointer-events: none; }
+@keyframes countdown-sheen { 0%,78% { translate: 0 0; } 96%,100% { translate: 320% 0; } }
+.chapter-diamond img { transition: transform 1.2s ease; }
+@media (hover: hover) { .chapter-photographs:hover .chapter-diamond img { transform: rotate(-45deg) scale(1.55); } }
+.heritage-motion-controls { display: flex; align-items: center; justify-content: space-between; margin-bottom: 22px; gap: 16px; font-size: 12px; color: #afc7e8; }
+.heritage-motion-controls button { display: flex; align-items: center; gap: 8px; padding: 8px 14px; border: 1px solid #85dbed55; background: #0a338555; color: #edf5ff; border-radius: 4px; }
+.heritage-viewport { overflow: auto; overscroll-behavior-x: contain; padding: 3px 0 20px; }
+.heritage-track { display: flex; width: max-content; animation: heritage-travel 65s linear infinite; }
+.heritage-slide-group { display: flex; align-items: stretch; gap: 24px; padding-right: 24px; flex-shrink: 0; }
+.immersive-site .heritage-section .heritage-track .experience-photo { width: clamp(250px, 29vw, 355px); flex: 0 0 auto; transform: none; }
+.immersive-site .heritage-section .heritage-track .experience-photo img { width: 100%; aspect-ratio: 4 / 3; height: auto; object-fit: cover; }
+.heritage-marquee.is-paused .heritage-track, .heritage-viewport:focus-within .heritage-track { animation-play-state: paused; }
+@keyframes heritage-travel { to { transform: translateX(-50%); } }
+@media (max-width: 760px) { .ambient-spark { transform: scale(.7); } .heritage-slide-group { gap: 18px; padding-right: 18px; } }
+@media (prefers-reduced-motion: reduce) {
+  .ambient-lights { display: none; }
+  .story-chapters::after, .immersive-site .heritage-section::after, .immersive-site .hero-countdown .countdown-number::before { animation: none; }
+  .chapter-diamond img { transition: none; }
+  .heritage-track { animation: none; width: 100%; }
+  .heritage-slide-copy { display: none; }
+  .heritage-slide-group { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); width: 100%; padding: 0; }
+  .immersive-site .heritage-section .heritage-track .experience-photo { width: 100%; }
+  .heritage-motion-controls { display: none; }
+}
+@media (prefers-reduced-motion: reduce) and (max-width: 760px) { .heritage-slide-group { grid-template-columns: 1fr; } }

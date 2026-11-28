@@ -1,0 +1,10 @@
+Icon sources: Animate UI official Lucide registry
+https://animate-ui.com/docs/icons/lucide-icons
+https://animate-ui.com/r/icons-lucide-<icon-name>.json
+
+Components are stored individually in icons/ as provided by the registry.
+Animation runtime: @animate-ui/react/icons + motion/react.
+Project-wide repeat defaults are in src/components/icon.tsx.
+animate=true, loop=true, loopDelay=4000..5950ms, speed=0.85.
+Reduced-motion and off-screen loop handling are implemented by Animate UI core.
+Route, House and Tag replace Lucide-only BusFront, Hotel and Ticket exports.

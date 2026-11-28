@@ -1,6 +1,7 @@
 'use client';
 import { LocalizedLink as Link } from './locale-provider';
 import { useLocale } from './locale-provider';
+import HeritageMarquee from './heritage-marquee';
 import { CalendarDays, MapPin } from './icon';
 
 type Photo = { image: string; title: string; description: string };
@@ -92,7 +93,7 @@ export default function EventExperiences() {
     <section className="section heritage-section" id="diem-den">
       <div className="container">
         <div className="section-heading"><div><p className="eyebrow blue">{t("ĐỊA ĐIỂM THAM QUAN")}</p><h2>{t("Ninh Bình,")}<br /><em>{t("chạm miền di sản.")}</em></h2></div><p className="heading-description">{t("Gợi ý khám phá trong chuyến đi.")}<br />{t("Tuyến tour cụ thể sẽ được BTC thông báo.")}</p></div>
-        <div className="experience-grid three-columns">
+        <HeritageMarquee>
           {[
             { image: 'trang-an.jpg', title: t("Tràng An"), description: t("Lên thuyền giữa núi đá vôi và dòng nước xanh.") },
             { image: 'tam-coc.jpg', title: t("Tam Cốc"), description: t("Sông nước, ruộng lúa và những dãy núi đá.") },
@@ -101,7 +102,7 @@ export default function EventExperiences() {
             { image: 'hoa-lu.jpg', title: t("Cố đô Hoa Lư"), description: t("Tìm về những dấu tích thời Đinh – Tiền Lê.") },
             { image: 'cuc-phuong.jpg', title: t("Cúc Phương"), description: t("Đi giữa màu xanh của rừng quốc gia.") },
           ].map(photo => <PhotoCard key={photo.title} {...photo} />)}
-        </div>
+        </HeritageMarquee>
       </div>
     </section>
   </>;

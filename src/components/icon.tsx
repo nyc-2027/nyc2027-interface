@@ -1,2 +1,63 @@
-import { ArrowUpRight, BusFront, CalendarDays, Check, ChevronDown, Clock3, Compass, Copy, Flag, Gift, Hotel, Mail, MapPin, Menu, MessageCircle, Minus, Plus, ShieldCheck, ShoppingBag, Sparkles, Ticket, Users, X } from 'lucide-react';
-export { ArrowUpRight, BusFront, CalendarDays, Check, ChevronDown, Clock3, Compass, Copy, Flag, Gift, Hotel, Mail, MapPin, Menu, MessageCircle, Minus, Plus, ShieldCheck, ShoppingBag, Sparkles, Ticket, Users, X };
+'use client';
+import type { ComponentType } from 'react';
+import type { IconProps } from '@animate-ui/react/icons';
+import { ArrowUp as ArrowUpRightSource } from './animate-ui/icons/arrow-up';
+import { Route as BusFrontSource } from './animate-ui/icons/route';
+import { CalendarDays as CalendarDaysSource } from './animate-ui/icons/calendar-days';
+import { Check as CheckSource } from './animate-ui/icons/check';
+import { ChevronDown as ChevronDownSource } from './animate-ui/icons/chevron-down';
+import { Clock3 as Clock3Source } from './animate-ui/icons/clock-3';
+import { Compass as CompassSource } from './animate-ui/icons/compass';
+import { Copy as CopySource } from './animate-ui/icons/copy';
+import { Flag as FlagSource } from './animate-ui/icons/flag';
+import { Gift as GiftSource } from './animate-ui/icons/gift';
+import { House as HotelSource } from './animate-ui/icons/house';
+import { Mail as MailSource } from './animate-ui/icons/mail';
+import { MapPin as MapPinSource } from './animate-ui/icons/map-pin';
+import { Menu as MenuSource } from './animate-ui/icons/menu';
+import { MessageCircle as MessageCircleSource } from './animate-ui/icons/message-circle';
+import { Minus as MinusSource } from './animate-ui/icons/minus';
+import { Plus as PlusSource } from './animate-ui/icons/plus';
+import { ShieldCheck as ShieldCheckSource } from './animate-ui/icons/shield-check';
+import { ShoppingBag as ShoppingBagSource } from './animate-ui/icons/shopping-bag';
+import { Sparkles as SparklesSource } from './animate-ui/icons/sparkles';
+import { Tag as TicketSource } from './animate-ui/icons/tag';
+import { Users as UsersSource } from './animate-ui/icons/users';
+import { X as XSource } from './animate-ui/icons/x';
+import { BotMessageSquare as BotMessageSquareSource } from './animate-ui/icons/bot-message-square';
+import { Pause as PauseSource } from './animate-ui/icons/pause';
+import { Play as PlaySource } from './animate-ui/icons/play';
+
+type LoopProps = Omit<IconProps<never>, 'animation' | 'animate' | 'animateOnHover' | 'animateOnTap' | 'animateOnView'>;
+function loopIcon(Source: ComponentType<LoopProps & { animate?: boolean }>, index: number) {
+  function LoopIcon(props: LoopProps) {
+    return <Source size={24} animate loop loopDelay={4000 + (index % 4) * 650} delay={(index % 5) * 180} speed={0.85} {...props} />;
+  }
+  return LoopIcon;
+}
+export const ArrowUpRight = loopIcon(ArrowUpRightSource, 0);
+export const BusFront = loopIcon(BusFrontSource, 1);
+export const CalendarDays = loopIcon(CalendarDaysSource, 2);
+export const Check = loopIcon(CheckSource, 3);
+export const ChevronDown = loopIcon(ChevronDownSource, 4);
+export const Clock3 = loopIcon(Clock3Source, 5);
+export const Compass = loopIcon(CompassSource, 6);
+export const Copy = loopIcon(CopySource, 7);
+export const Flag = loopIcon(FlagSource, 8);
+export const Gift = loopIcon(GiftSource, 9);
+export const Hotel = loopIcon(HotelSource, 10);
+export const Mail = loopIcon(MailSource, 11);
+export const MapPin = loopIcon(MapPinSource, 12);
+export const Menu = loopIcon(MenuSource, 13);
+export const MessageCircle = loopIcon(MessageCircleSource, 14);
+export const Minus = loopIcon(MinusSource, 15);
+export const Plus = loopIcon(PlusSource, 16);
+export const ShieldCheck = loopIcon(ShieldCheckSource, 17);
+export const ShoppingBag = loopIcon(ShoppingBagSource, 18);
+export const Sparkles = loopIcon(SparklesSource, 19);
+export const Ticket = loopIcon(TicketSource, 20);
+export const Users = loopIcon(UsersSource, 21);
+export const X = loopIcon(XSource, 22);
+export const BotMessageSquare = loopIcon(BotMessageSquareSource, 23);
+export const Pause = loopIcon(PauseSource, 24);
+export const Play = loopIcon(PlaySource, 25);
