@@ -82,9 +82,9 @@ export default function EventExperiences() {
           <p>{t("Tất cả nằm trong cùng khu Wyndham Grand Vedana, thuận tiện di chuyển giữa chương trình và thời gian nghỉ ngơi.")}</p>
         </div>
         <div className="experience-grid three-columns">
-          <PhotoCard image="times-97XoNChy.webp" title="Times Hall" description={t("Hội trường không cột, không gian cho lễ vinh danh và Gala.")} />
-          <PhotoCard image="tre-BGLebB0k.webp" title={t("Nhà hàng Tre")} description={t("Kiến trúc mái tre và không gian mở bên hồ cho những bữa tiệc kết nối.")} />
-          <PhotoCard image="warriors-BaE__94o.webp" title="Warriors" description={t("Phòng họp trang bị màn hình LED, phục vụ các phiên làm việc.")} />
+          <PhotoCard image="times-97XoNChy.jpg" title="Times Hall" description={t("Hội trường không cột, không gian cho lễ vinh danh và Gala.")} />
+          <PhotoCard image="tre-res.jpg" title={t("Nhà hàng Tre")} description={t("Kiến trúc mái tre và không gian mở bên hồ cho những bữa tiệc kết nối.")} />
+          <PhotoCard image="warriors.jpg" title="Warriors" description={t("Phòng họp trang bị màn hình LED, phục vụ các phiên làm việc.")} />
         </div>
       </div>
     </section>

@@ -6,11 +6,11 @@ import { LocalizedLink as Link, useLocale } from './locale-provider';
 export default function StoryChapters() {
   const { locale } = useLocale();
   const chapters = [
-    { session: program[0].sessions[0], day: '15.01', photo: 'warriors-BaE__94o.webp', detail: 'trang-an.jpg' },
-    { session: program[0].sessions[2], day: '15.01', photo: 'tre-BGLebB0k.webp', detail: 'tam-coc.jpg' },
-    { session: program[1].sessions[1], day: '16.01', photo: 'times-97XoNChy.webp', detail: 'bai-dinh.jpg' },
-    { session: program[1].sessions[2], day: '16.01', photo: 'hotel-FrC3zrvc.webp', detail: 'hoa-lu.jpg' },
-    { session: program[2].sessions[1], day: '17.01', photo: 'hang-mua.jpg', detail: 'cuc-phuong.jpg' },
+    { session: program[0].sessions[0], day: '15.01', photo: 'warriors-BaE__94o.jpg', detail: 'trang-an.jpg' },
+    { session: program[0].sessions[2], day: '15.01', photo: 'nhahangtre.jpg', detail: 'tam-coc.jpg' },
+    { session: program[1].sessions[1], day: '16.01', photo: 'times-97XoNChy.jpg', detail: 'bai-dinh.jpg' },
+    { session: program[1].sessions[2], day: '16.01', photo: 'lenhamchuc.jpg', detail: 'hoa-lu.jpg' },
+    { session: program[2].sessions[1], day: '17.01', photo: 'hang-mua-7.webp', detail: 'cuc-phuong.jpg' },
   ];
 
   return (
@@ -28,7 +28,9 @@ export default function StoryChapters() {
                 <div className="chapter-diamond"><img src={`/images/${photo}`} alt={session.name[locale]} loading="lazy" /></div>
                 <div className="chapter-detail" aria-hidden="true"><img src={`/images/${detail}`} alt="" loading="lazy" /></div>
               </div>
-              <span className="chapter-point" aria-hidden="true" />
+              <span className="chapter-point relative" aria-hidden="true">
+                <span className="absolute inset-0 animate-ping rounded-full bg-inherit motion-reduce:animate-none" />
+              </span>
               <div className="chapter-copy">
                 <time>{day}.2027 · {session.time}</time>
                 <h3>{session.name[locale]}</h3>
