@@ -59,7 +59,7 @@ export default function InternationalRegistration() {
           </label>)}
         </fieldset>
         <h3 className="cart-section-title">Optional experience</h3>
-        <label className="cart-addon"><input type="checkbox" checked={golf} onChange={e => setGolf(e.target.checked)} /><span>Golf Tournament<small>07:00 · 16 January 2027 · Tràng An Golf & Resort</small></span><strong className="addon-price">Approx. {usd(golfPrice / indicativeUsdRate)} USD<small>{money(golfPrice)} / person</small></strong></label>
+        <label className="cart-addon"><input type="checkbox" checked={golf} onChange={e => setGolf(e.target.checked)} /><span>Golf Tournament<small>Afternoon · 15 January 2027 · Tràng An Golf & Resort</small></span><strong className="addon-price">Approx. {usd(golfPrice / indicativeUsdRate)} USD<small>{money(golfPrice)} / person</small></strong></label>
         <div className="international-terms"><h3>Before you book</h3><ul><li>Airport transfers operate on the COC group schedule.</li><li>Flights, extra nights, single-room upgrades and private transfers outside the group schedule are not included.</li><li>No lunch on 17 January.</li></ul><p>Indicative conversion only: 1 USD = 26,000 VND, as stated in the event package poster.</p></div>
         <div className="cart-total"><span>{selectedPackage.name}<small>01 delegate · Twin sharing{golf ? ' · Golf included' : ''}</small></span><strong>{golf ? 'Approx. ' : ''}{usd(displayTotal)} USD</strong></div>
         {golf && <p className="showcase-note">Estimated bank transfer: {money(totalVnd)}. Golf is charged at {money(golfPrice)}; the exact VND total and configured exchange rate are shown with your payment QR.</p>}

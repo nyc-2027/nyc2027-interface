@@ -9,6 +9,11 @@ test('registration email escapes guest input and explicitly leaves payment uncon
   assert.ok(email.text.includes('chưa được xác nhận'));
   assert.ok(email.text.includes(payload.payment.transferContent));
 });
+test('single-night tickets are named correctly in email', () => {
+  const email = confirmationEmail({ ...payload, order: { ...payload.order, programTicket: 'culture' } }, 'registered');
+  assert.ok(email.html.includes('Culture Night · 15/01'));
+  assert.ok(!email.text.includes('Combo Culture Night + Gala Night'));
+});
 test('reminder email includes payment reference and warns against paying twice', () => {
   const email = confirmationEmail(payload, 'reminder');
   assert.ok(email.subject.includes('Nhắc hoàn tất'));

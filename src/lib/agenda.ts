@@ -12,6 +12,10 @@ export const program: ProgramDay[] = [
         vi: 'Kỳ họp đầu tiên của nhiệm kỳ mới. Ban Điều hành Quốc gia (NBOD) và đại diện các chapter trên cả nước cùng ngồi lại để thống nhất định hướng, kế hoạch và các quyết sách cho năm 2027.',
         en: 'The first assembly of the new term. The National Board and chapter delegates from across Vietnam come together to set the direction, plans and key decisions for 2027.',
       } },
+      { time: 'PM', module: true, name: { vi: 'Giải Golf Quốc tế NYC 2027', en: 'NYC 2027 International Golf Tournament' }, description: {
+        vi: 'Giải golf giữa núi non Ninh Bình, nơi doanh nhân trong và ngoài nước giao lưu, kết nối và cùng nhau thi đấu.',
+        en: "A friendly competition set among Ninh Binh's limestone landscapes, connecting leaders and entrepreneurs from Vietnam and abroad.",
+      } },
       { time: '19:00', name: { vi: 'Culture Night: 17 Sắc màu · 17 Mục tiêu', en: 'Culture Night: 17 Colours · 17 Goals' }, description: {
         vi: 'Mỗi chapter mang một Mục tiêu Phát triển Bền vững (SDG) của Liên Hợp Quốc lên sân khấu bằng trang phục và màn trình diễn của mình. 17 chapter thể hiện 17 mục tiêu, cùng kể chung một câu chuyện về tác động tích cực, nơi bản sắc địa phương gặp tầm nhìn toàn cầu.',
         en: 'Each chapter brings one UN Sustainable Development Goal to life through costume and performance. 17 chapters, 17 goals, one shared story of impact where local identity meets global vision.',
@@ -22,10 +26,6 @@ export const program: ProgramDay[] = [
     date: '16', weekday: { vi: 'THỨ BẢY', en: 'SATURDAY' },
     theme: { vi: 'Kế thừa & Vinh danh', en: 'Heritage & Honour' },
     sessions: [
-      { time: '07:00', module: true, name: { vi: 'Giải Golf Quốc tế NYC 2027', en: 'NYC 2027 International Golf Tournament' }, description: {
-        vi: 'Giải golf giữa núi non Ninh Bình, nơi doanh nhân trong và ngoài nước giao lưu, kết nối và cùng nhau thi đấu.',
-        en: "A friendly competition set among Ninh Binh's limestone landscapes, connecting leaders and entrepreneurs from Vietnam and abroad.",
-      } },
       { time: '08:30', name: { vi: 'Lễ Nhậm chức JCI Thăng Long 2027', en: 'JCI Thang Long Inauguration Ceremony 2027' }, description: {
         vi: 'Ban Điều hành mới của JCI Thăng Long nhận nhiệm vụ ngay trên vùng đất Cố đô, tiếp nối truyền thống và mở ra một chặng đường mới.',
         en: "JCI Thang Long's new leadership takes office in the ancient capital, carrying the legacy forward into a new chapter.",

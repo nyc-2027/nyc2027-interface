@@ -53,7 +53,7 @@ export default function EventAgenda() {
               <div className="program-timeline" key={activeDay}>
                 {selectedDay.sessions.map(session => (
                   <article className="program-session" key={session.time}>
-                    <time dateTime={`2027-01-${selectedDay.date}T${session.time}:00+07:00`}><Clock3 size={16} />{session.time}</time>
+                    <time dateTime={session.time === 'PM' ? `2027-01-${selectedDay.date}` : `2027-01-${selectedDay.date}T${session.time}:00+07:00`}><Clock3 size={16} />{session.time === 'PM' ? (locale === 'en' ? 'Afternoon' : 'Chiều') : session.time}</time>
                     <div>
                       {session.module && <span className="program-module">{t('Đăng ký riêng')}</span>}
                       <h3>{session.name[locale]}</h3>
