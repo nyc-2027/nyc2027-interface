@@ -10,6 +10,7 @@ export default function StoryChapters() {
     { session: program[0].sessions[2], day: '15.01', photo: 'nhahangtre.jpg', detail: 'tam-coc.jpg' },
     { session: program[1].sessions[1], day: '16.01', photo: 'times-97XoNChy.jpg', detail: 'bai-dinh.jpg' },
     { session: program[1].sessions[2], day: '16.01', photo: 'lenhamchuc.jpg', detail: 'hoa-lu.jpg' },
+    { session: program[1].sessions[3], day: '16.01', photo: 'times.jpg', detail: 'nhahangtre.jpg' },
     { session: program[2].sessions[1], day: '17.01', photo: 'hang-mua-7.webp', detail: 'cuc-phuong.jpg' },
   ];
 

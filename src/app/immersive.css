@@ -1,4 +1,15 @@
 /* Cobalt night, cyan light and warm reflections: NYC 2027 event identity. */
+.session-location { margin-top: 16px; font-size: 13px; text-align: left; }
+.session-location summary { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; cursor: pointer; color: #89e7ff; padding-block: 6px; }
+.session-location summary svg { flex-shrink: 0; }
+.session-location summary small { color: #afc7e8; font-size: 11px; text-decoration: underline; text-underline-offset: 3px; }
+.session-location summary:focus-visible { outline: 2px solid #89e7ff; outline-offset: 4px; }
+.session-location-content { margin-top: 8px; padding: 14px 16px; border: 1px solid #89e7ff40; border-radius: 8px; background: #103b9c55; }
+.immersive-site .session-location-content p { margin: 0 0 10px; font-size: 13px; line-height: 1.7; }
+.session-location-content a { color: #89e7ff; text-decoration: underline; text-underline-offset: 3px; }
+.resort-activities { margin-top: 36px; padding: 24px; border: 1px solid #89e7ff40; border-radius: 10px; background: linear-gradient(120deg, #103b9c66, #087bff15); }
+.resort-activities h3 { margin-bottom: 12px; color: #f4cf86; font-size: 18px; }
+.resort-activities p { color: #afc7e8; font-size: 14px; line-height: 1.8; margin-block: 6px; }
 :root {
   --deep: #050d55;
   --panel: #103b9c;
@@ -149,7 +160,7 @@
 .immersive-site #golf .experience-photo img { aspect-ratio: 4 / 3; height: auto; object-position: center; }
 .immersive-site .pickleball-layout { gap: 80px; }
 .immersive-site .pickleball-layout > img { border: 0; }
-.immersive-site .stay-mosaic { grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: start; gap: 30px; }
+.immersive-site .stay-mosaic { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 900px; margin-inline: auto; align-items: start; gap: 30px; }
 .immersive-site .stay-mosaic .experience-photo:first-child { grid-row: auto; }
 .immersive-site .stay-mosaic .experience-photo img { height: auto; aspect-ratio: 4 / 3; object-position: center; }
 .immersive-site .experience-photo { margin: 0; min-width: 0; }
