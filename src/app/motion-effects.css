@@ -1,11 +1,8 @@
 /* Slow movement at the edges leaves the event content in the foreground. */
 .immersive-site { position: relative; isolation: isolate; }
 .ambient-lights { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: -1; contain: paint; }
-.ambient-spark { position: absolute; width: var(--spark-size); height: var(--spark-size); border-radius: 50%; background: #efffff; box-shadow: 0 0 10px #a7f5ff, 0 0 24px #00d8ff66; animation: ambient-drift var(--spark-duration) ease-in-out var(--spark-delay) infinite; }
-.ambient-star::before, .ambient-star::after { content: ''; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); background: linear-gradient(transparent,#c4f7ff,transparent); width: 1px; height: 44px; }
-.ambient-star::after { transform: translate(-50%,-50%) rotate(90deg); height: 30px; }
-.ambient-dust:nth-child(3n) { background: #ffe5a6; box-shadow: 0 0 12px #ffd36b66; }
-@keyframes ambient-drift { 0%,100% { opacity: .12; transform: translate3d(0,0,0) scale(.65); } 50% { opacity: .65; transform: translate3d(var(--spark-drift-x),var(--spark-drift-y),0) scale(1); } }
+.event-particles { position: fixed; inset: 0; pointer-events: none; z-index: -1; }
+.event-particles > div, .event-particles canvas { width: 100%; height: 100%; }
 .ambient-orb { position: absolute; width: min(900px, 85vw); height: 560px; border-radius: 50%; background: radial-gradient(ellipse,#0a73f62e,transparent 68%); animation: aurora-drift 32s ease-in-out infinite alternate; }
 .orb-0 { top: 8%; left: -30%; }
 .orb-1 { top: 34%; right: -28%; background: radial-gradient(ellipse,#00d8ff1f,transparent 68%); animation-delay: -17s; }
@@ -28,9 +25,9 @@
 .immersive-site .heritage-section .heritage-track .experience-photo img { width: 100%; aspect-ratio: 4 / 3; height: auto; object-fit: cover; }
 .heritage-marquee.is-paused .heritage-track, .heritage-viewport:focus-within .heritage-track { animation-play-state: paused; }
 @keyframes heritage-travel { to { transform: translateX(-50%); } }
-@media (max-width: 760px) { .ambient-spark { transform: scale(.7); } .heritage-slide-group { gap: 18px; padding-right: 18px; } }
+@media (max-width: 760px) { .heritage-slide-group { gap: 18px; padding-right: 18px; } }
 @media (prefers-reduced-motion: reduce) {
-  .ambient-lights { display: none; }
+  .ambient-lights, .event-particles { display: none; }
   .story-chapters::after, .immersive-site .heritage-section::after, .immersive-site .hero-countdown .countdown-number::before { animation: none; }
   .chapter-diamond img { transition: none; }
   .heritage-track { animation: none; width: 100%; }
